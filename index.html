@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>	
+	<script type="text/javascript" src="crafty.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		Crafty.init(700, 900);
+        Crafty.background( Crafty.e("2D, DOM, Image").image("bg.png"));
+        var color = 'rgb(255,0,0)';
+        var p = 0;
+        //brush
+        Crafty.e("Brush, 2D, DOM, Color, Multiway")
+            .color(color)
+            .attr({ x: 200, y: 100, w: 20, h: 20, media: 0 })
+            .multiway(20, { UP_ARROW: -90, DOWN_ARROW: 90, LEFT_ARROW: 180, RIGHT_ARROW: 0 })
+            
+            .bind('EnterFrame', function () {
+                //hit floor or roof
+                if (this.y <= 0 || this.y >= 290)
+                    this.dY *= -1;
+                    
+
+            })
+            .bind("KeyDown", function (e) {
+                
+                Crafty("Message").each(function () { 
+                    this.text("You keyed " + ++p )});
+                if (e.key == Crafty.keys['ENTER'] || e.key == Crafty.keys['SPACE']){    
+                    if (this.media == 0){ 
+                        Crafty.e('2D, DOM, Color, Collision')
+                            .color("blue")
+                            .attr({
+                            w: 20,
+                            h: 20,
+                            x: this.x,
+                            y: this.y
+                        })
+                    } else if (this.media = 1){
+                        Crafty.e('2D, DOM, Color, Collision')
+                            .color("green")
+                            .attr({
+                            w: 20,
+                            h: 20,
+                            x: this.x,
+                            y: this.y
+                        })
+                    }
+                }
+            })
+            
+
+        //Message - currently just for debugging
+        Crafty.e("Message, DOM, 2D, Text")
+            .attr({ x: 515, y: 20, w: 100, h: 20, points: 0 })
+            .text("Welcome " + p)
+            
+        Crafty.e('Media_1, 2D, DOM, Color, Mouse')
+            .color("green")
+            .attr({ x: 515, y: 820, w: 20, h: 20})
+                   
+            .bind("Click", function () {
+                Crafty("Message").each(function () { 
+                    this.text("You clicked")});
+                Crafty("Brush").each(function () { 
+                    this.media = 1; 
+                })
+            })
+ 
+        //Crafty.addEntityFactory('Wall', function() {
+        //      var entity = Crafty.e('2D, DOM, Color, Collision')
+         //     .color("blue")
+         //     .attr({
+          //      w: 20,
+            //    h: 20,
+              //  x: Crafty("Brush").x,
+               // y: Crafty("Brush").y
+              //})
+              //.addComponent('Gravity').gravity("Floor");
+
+              //return entity;
+            //})
+    
+	</script>
+</body>
+</html>
