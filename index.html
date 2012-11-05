@@ -14,6 +14,14 @@
         Crafty.sprite(20, "cat.png", {
             cat: [0, 0]
         });
+        Crafty.sprite(20, "sprites_1.png", {
+            brick: [0, 0],
+            window:[0, 1],
+            roof1:[0,2,2,1],
+            roof2:[0,3,2,1],
+            roof3:[0,4],
+            door:[0,5,1,2],
+        });
         
         
         Crafty.scene("loading", function () {
@@ -44,9 +52,8 @@
                 .text("Welcome " + p)
             
             //pallet items
-            Crafty.e('Media_0, 2D, DOM, Color, Mouse')
-                .color("blue")
-                .attr({ x: 500, y: 820, w: 20, h: 20})
+            Crafty.e('Media_0, 2D, DOM, brick, Mouse')
+                .attr({ x: 500, y: 840, w: 20, h: 20})
                        
                 .bind("Click", function () {
                     Crafty("Message").each(function () { 
@@ -56,9 +63,9 @@
                     })
                 })
                 
-            Crafty.e('Media_1, 2D, DOM, Color, Mouse')
-                .color("green")
-                .attr({ x: 520, y: 820, w: 20, h: 20})
+            Crafty.e('Media_1, 2D, DOM, window, Mouse')
+                
+                .attr({ x: 525, y: 840, w: 20, h: 20})
                        
                 .bind("Click", function () {
                     Crafty("Message").each(function () { 
@@ -68,8 +75,8 @@
                     })
                 })
 
-             Crafty.e("Media_2, 2D, DOM, cat, SpriteAnimation, Mouse")
-                .attr({x: 540, y: 820 })
+             Crafty.e("Media_2, 2D, DOM, cat, , Mouse")
+                .attr({x: 545, y: 840 })
                        
                 .bind("Click", function () {
                     Crafty("Message").each(function () { 
@@ -78,7 +85,57 @@
                         this.media = 2; 
                     })
                 })
-            
+            Crafty.e('Media_3, 2D, DOM, roof1, Mouse')
+                
+                .attr({ x: 565, y: 840})
+                       
+                .bind("Click", function () {
+                    Crafty("Message").each(function () { 
+                        this.text("You clicked")});
+                    Crafty("Brush").each(function () { 
+                        this.media = 3; 
+                    })
+                })
+
+             Crafty.e("Media_4, 2D, DOM, roof3, Mouse")
+                .attr({x: 610, y: 840 })
+                       
+                .bind("Click", function () {
+                    Crafty("Message").each(function () { 
+                        this.text("You clicked")});
+                    Crafty("Brush").each(function () { 
+                        this.media = 4; 
+                    })
+                })
+
+             Crafty.e("Media_5, 2D, DOM, roof2,  Mouse")
+                .attr({x:635, y: 840 })
+                       
+                .bind("Click", function () {
+                    Crafty("Message").each(function () { 
+                        this.text("You clicked")});
+                    Crafty("Brush").each(function () { 
+                        this.media = 5; 
+                    })
+                })
+                
+             Crafty.e("Media_5, 2D, DOM, door,  Mouse")
+                .attr({x:680, y: 820 })
+                       
+                .bind("Click", function () {
+                    Crafty("Message").each(function () { 
+                        this.text("You clicked")});
+                    Crafty("Brush").each(function () { 
+                        this.media = 6; 
+                    })
+                })
+
+                
+            //Floor            
+            Crafty.e("Floor, 2D, DOM, Color, Solid")
+                .attr({x: 0, y: 800, w: 700, h: 20 })
+                .color("green")    
+
             //Brush
             Crafty.e("Brush, 2D, DOM, Color, Multiway")
                 .color(color)
@@ -91,13 +148,7 @@
                         this.y = 20;
                     if (this.y >= 860 )
                         this.y = 860;
-                        
-                    Crafty("Physics").each (function () {
-                        if( !this.hit() && this.y != 860)
-                            this.y = this.y+20;
-                })
-                })
-                
+                })                     
 
                 .bind("KeyDown", function (e) {
                     
@@ -105,17 +156,18 @@
                         this.text("You keyed " + ++p )});
                     if (e.key == Crafty.keys['ENTER'] || e.key == Crafty.keys['SPACE']){    
                         if (this.media == 0){ 
-                            Crafty.e('2D, DOM, Color, Collision')
-                                .color("blue")
+                            Crafty.e('2D, DOM, brick, Collision, Gravity, Solid')
+                                //.color("blue")
                                 .attr({
                                 w: 20,
                                 h: 20,
                                 x: this.x,
                                 y: this.y
-                            })
+                                })
+                                .gravity("Solid")
                         } else if (this.media == 1){
-                            Crafty.e('2D, DOM, Color, Collision, Physics')
-                                .color("green")
+                            Crafty.e('2D, DOM,  window, SpriteAnimation, Collision, Gravity, Solid')
+                                
                                 .attr({
                                     w: 20,
                                     h: 20,
@@ -123,8 +175,14 @@
                                     y: this.y
                                 })
                                 .collision()
+                                .animate('window', 0, 1, 1)
+                                .bind("EnterFrame", function () {
+                                    if(!this.isPlaying())
+                                        this.animate('window', 800);
+                                })
+                                .gravity("Solid")
                         } else if(this.media == 2){
-                            Crafty.e("2D, DOM, cat, SpriteAnimation")
+                            Crafty.e("2D, DOM, cat, SpriteAnimation, Gravity")
                                 .attr({
                                 x: this.x,
                                 y: this.y
@@ -134,8 +192,39 @@
                                     if(!this.isPlaying())
                                         this.animate('cat', 80);
                                 })
-                             }
-                        
+                                .gravity("Solid")
+                        } else if(this.media == 3){
+                            Crafty.e("2D, DOM, roof1, Gravity, Solid")
+                                .attr({
+                                x: this.x,
+                                y: this.y
+                                })
+                                .gravity("Solid")
+                             
+                        } else if(this.media == 4){
+                            Crafty.e("2D, DOM, roof3, Gravity, Solid")
+                                .attr({
+                                x: this.x,
+                                y: this.y
+                                })
+                                .gravity("Solid")
+                                                         
+                        } else if(this.media == 5){
+                            Crafty.e("2D, DOM, roof2, Gravity, Solid")
+                                .attr({
+                                x: this.x,
+                                y: this.y
+                                })
+                                .gravity("Solid")
+                        }else if(this.media == 6){
+                            Crafty.e("2D, DOM, door, Gravity, Solid")
+                                .attr({
+                                x: this.x,
+                                y: this.y
+                                })
+                                .gravity("Solid")
+                        }
+                             
                     } else if (e.key == Crafty.keys['UP_ARROW'] || e.key == Crafty.keys['W']){
                             this.y = this.y - 20;
                     }else if (e.key == Crafty.keys['DOWN_ARROW'] || e.key == Crafty.keys['S']){
