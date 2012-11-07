@@ -4,6 +4,7 @@
 </head>
 <body>
 	<script type="text/javascript">
+        var  unreadPost = false;
 		Crafty.init(700, 890);
         
         var color = 'rgb(255,0,0)';
@@ -29,6 +30,10 @@
             npc: [0, 0,1,2],
             rev_npc: [0,3,1,2]
         });        
+        Crafty.sprite(100, "speak2.png", {
+            player_post: [0, 0],
+            npc_post:[0,0,6,1]
+        });
         
         Crafty.scene("loading", function () {
             //load takes an array of assets and a callback when complete
@@ -52,18 +57,35 @@
                 
                 
 
-            //Message - currently just for debugging
+            //Message 
             Crafty.e("Message, DOM, 2D, Text")
-                .attr({ x: 515, y: 20, w: 100, h: 20, points: 0 })
-                .text("Welcome " + p)
+                .attr({ x: 200, y: 820, w: 100, h: 20})
+                .text("Points " +  p)
+                .bind("EnterFrame", function () {
+                    if (unreadPost){
+                        this.text(document.getElementById('PostBox').value); 
+                       unreadPost = false;
+                   }
+                })
+            /*Post 
             
+                 if (unreadPost){
+                    Crafty.e("PlayerPost, DOM, 2D, Text, player_post ")
+                        .attr({ x: 200, y: 320})
+                        //.bind("EnterFrame", function () {
+                           
+                                Crafty("PlayerPost").text(document.getElementById('PostBox').value); 
+                                unreadPost = false;
+                                p += 100;
+                            
+                        //})
+                    }
+                })*/
             //pallet items
             Crafty.e('Media_0, 2D, DOM, brick, Mouse')
-                .attr({ x: 500, y: 820, w: 20, h: 20})
-                       
+                .attr({ x: 500, y: 820, w: 20, h: 20})       
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 0; 
                     })
@@ -74,8 +96,7 @@
                 .attr({ x: 525, y: 820, w: 20, h: 20})
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 1; 
                     })
@@ -85,8 +106,7 @@
                 .attr({x: 545, y: 820 })
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 2; 
                     })
@@ -96,8 +116,7 @@
                 .attr({ x: 565, y: 820})
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 3; 
                     })
@@ -107,8 +126,7 @@
                 .attr({x: 610, y: 820 })
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 4; 
                     })
@@ -118,8 +136,7 @@
                 .attr({x:635, y: 820 })
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 5; 
                     })
@@ -129,8 +146,7 @@
                 .attr({x:680, y: 800 })
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 6; 
                     })
@@ -140,8 +156,7 @@
                 .attr({x:500, y: 860 })
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 7; 
                     })
@@ -151,12 +166,24 @@
                 .attr({x:680, y: 840 })
                        
                 .bind("Click", function () {
-                    Crafty("Message").each(function () { 
-                        this.text("You clicked")});
+                     
                     Crafty("Brush").each(function () { 
                         this.media = 8; 
                     })
                 })
+                
+                //Crafty.e("Save_Test, 2D, DOM, rev_cat,  Mouse")
+                //.attr({x:30, y: 840 })
+                       
+                //.bind("Click", function () {
+                   // var ent = Crafty.e("2D, DOM, Color")
+                   //     .attr({x: 20, y: 20, w: 100, h:100})
+                   //     .color(color);
+                  //  Crafty.storage.open('MyGame');
+                  //  Crafty.storage.save('MyEntity', 'save', ent);
+                //})
+                
+                
             //Mover
             Crafty.c("Mover" ,{
                 init: function(){
@@ -223,8 +250,7 @@
 
                 .bind("KeyDown", function (e) {
                     
-                    Crafty("Message").each(function () { 
-                        this.text("You keyed " + ++p )});
+
                     if (e.key == Crafty.keys['ENTER'] || e.key == Crafty.keys['SPACE']){    
                         if (this.media == 0){ 
                             Crafty.e('2D, DOM, brick, Collision, Gravity, Solid, SuperSolid')
@@ -332,7 +358,9 @@
 
         })
         
-
+        function newPost(){
+            unreadPost = true;
+        }
         
         //Crafty.addEntityFactory('Wall', function() {
         //      var entity = Crafty.e('2D, DOM, Color, Collision')
@@ -349,5 +377,6 @@
             //})
     
 	</script>
+    <p>Post New Message: <input  id = "PostBox" name="post"><input type="button" value="Post!" onClick=newPost();></p>
 </body>
 </html>
