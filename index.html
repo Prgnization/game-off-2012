@@ -190,21 +190,28 @@
                     this.requires('SpriteAnimation');
                 },
 
-                walk: function(){
-                    //if(!this.isPlaying())
-                        if(this.dX == 1 ){
-                            this.animate('right', 3);
-                        }else{
-                            this.animate('left', 3);
+                
+                    walk: function(){
+                        //if(!this.isPlaying())
+                        if( Crafty.math.randomInt(0, 5) < this.speed){
+                            if(this.dX == 1 ){
+                                this.animate('right', 3);
+                            }else{
+                                this.animate('left', 3);
+                            }
+                            if(this.x > 680 || this.x < 0){
+                                this.turnAround();
+                            }
+                            else{
+                                 if( Crafty.math.randomInt(0, 100) < this.turnFactor){
+                                    this.turnAround();
+                                 }else{
+                                    this.x = this.x + this.dX;
+                                }
+                            }
                         }
-                    if(this.x > 680 || this.x < 0){
-                        this.turnAround();
-                    }
-                    else{
-                        this.x = this.x + this.dX;
-                    }
-                },
-
+                    },
+                    
                 turnAround: function(){
                         this.dX *= -1;
                         this.x = this.x + this.dX;
@@ -219,7 +226,7 @@
 
             //NPC            
             Crafty.e("NPC, 2D, DOM, npc, Collision, Mover")
-                .attr({x: 0, y: 740, z:100, dX:1})
+                .attr({x: 0, y: 740, z:100, dX:1, speed:2, turnFactor:10})
                 .animate('right', 0, 0, 3)
                 .animate('left', 0, 2, 3)
                 
@@ -284,7 +291,9 @@
                                 x: this.x,
                                 y: this.y,
                                 z: 100000,
-                                dX: 1
+                                dX: 1,
+                                speed:5,
+                                turnFactor:1
                                 })
 
                                 .animate('right', 0, 0, 2)
