@@ -4,7 +4,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-        var  unreadPost = false;
+        var  unreadPost = true;
 		Crafty.init(700, 890);
         
         var color = 'rgb(255,0,0)';
@@ -31,13 +31,13 @@
             rev_npc: [0,3,1,2]
         });        
         Crafty.sprite(100, "speak2.png", {
-            player_post: [0, 0],
-            npc_post:[0,0,6,1]
+            greenpost: [0, 1],
+            npcpost:[0,0,6,1]
         });
         
         Crafty.scene("loading", function () {
             //load takes an array of assets and a callback when complete
-            Crafty.load(["cat.png", "bg.png"], function () {
+            Crafty.load(["cat.png", "bg.png", "sprites_1.png", "examplenpc.png", "speak2.png"], function () {
                 Crafty.scene("main"); //when everything is loaded, run the main scene
             });
         
@@ -58,29 +58,36 @@
                 
 
             //Message 
-            Crafty.e("Message, DOM, 2D, Text")
-                .attr({ x: 200, y: 820, w: 100, h: 20})
-                .text("Points " +  p)
+            Crafty.e("Message, DOM")
+                //.attr({ x: 200, y: 820, w: 100, h: 20})
+                
+                
                 .bind("EnterFrame", function () {
+                    if (unreadPost){                     
+                        p = p + 100;
+                        document.getElementById('pointbox').value =  p;
+                        //this.textFont({ family: 'Arial', size:"12px" })
+                        //this.text("Points " +  p)
+                   }
+                })
+
+
+            //Player Post
+            Crafty.e("Post, DOM, 2D,  Text, Delay , greenpost")
+                .attr({ x: 50, y: 320 ,w:600, h: 100, visible:false})
+                .text("")
+                
+                .bind("EnterFrame", function () {
+                    
                     if (unreadPost){
-                        this.text(document.getElementById('PostBox').value); 
+                        this.visible = true;
+                        this.text(document.getElementById('PostBox').value);
+                        this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
+                        this.delay(function(){this.visible = false},3000);
                        unreadPost = false;
                    }
                 })
-            /*Post 
-            
-                 if (unreadPost){
-                    Crafty.e("PlayerPost, DOM, 2D, Text, player_post ")
-                        .attr({ x: 200, y: 320})
-                        //.bind("EnterFrame", function () {
-                           
-                                Crafty("PlayerPost").text(document.getElementById('PostBox').value); 
-                                unreadPost = false;
-                                p += 100;
-                            
-                        //})
-                    }
-                })*/
+
             //pallet items
             Crafty.e('Media_0, 2D, DOM, brick, Mouse')
                 .attr({ x: 500, y: 820, w: 20, h: 20})       
@@ -253,6 +260,14 @@
                         this.y = 20;
                     if (this.y >= 860 )
                         this.y = 860;
+                        
+                                 
+            
+                    if (unreadPost){
+                        Crafty("PlayerPost").text(document.getElementById('PostBox').value); 
+                        unreadPost = false;
+                                p += 100;
+                    }
                 })                     
 
                 .bind("KeyDown", function (e) {
@@ -363,7 +378,7 @@
                     }
                 
              })
-
+                    
 
         })
         
@@ -386,6 +401,6 @@
             //})
     
 	</script>
-    <p>Post New Message: <input  id = "PostBox" name="post"><input type="button" value="Post!" onClick=newPost();></p>
+    <p>Post New Message: <input  id = "PostBox" name="post" value="   Player entered channel!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="poinbox" readonly="readonly" ></p>
 </body>
 </html>
