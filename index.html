@@ -5,11 +5,15 @@
 <body>
 	<script type="text/javascript">
         var  unreadPost = true;
+        var  npc_post = true;
+        
 		Crafty.init(700, 890);
         
         var color = 'rgb(255,0,0)';
-        var p = 0;
-        
+        var p =0;
+        var d=0;
+        var a = 0;
+
         
         //turn the sprite maps into usable components
         Crafty.sprite(20, "cat.png", {
@@ -29,10 +33,13 @@
         Crafty.sprite(20, "examplenpc.png", {
             npc: [0, 0,1,2],
             rev_npc: [0,3,1,2]
-        });        
+        });
+        Crafty.sprite(91, "Dolly.png", {
+            dolly: [0, 0]  
+        });         
         Crafty.sprite(100, "speak2.png", {
             greenpost: [0, 1],
-            npcpost:[0,0,6,1]
+            bluepost:[0,0,6,1]
         });
         
         Crafty.scene("loading", function () {
@@ -54,9 +61,7 @@
         Crafty.scene("main", function () {
             Crafty.background( Crafty.e("2D, DOM, Image").image("bg.png"));
             
-                
-                
-
+     
             //Message 
             Crafty.e("Message, DOM")
                 //.attr({ x: 200, y: 820, w: 100, h: 20})
@@ -66,31 +71,88 @@
                     if (unreadPost){                     
                         p = p + 100;
                         document.getElementById('pointbox').value =  p;
+                        
                         //this.textFont({ family: 'Arial', size:"12px" })
                         //this.text("Points " +  p)
                    }
                 })
 
 
+     
             //Player Post
             Crafty.e("Post, DOM, 2D,  Text, Delay , greenpost")
-                .attr({ x: 50, y: 320 ,w:600, h: 100, visible:false})
+                .attr({ x: 50, y: 320 ,w:600, h: 100, z:10000, visible:false})
                 .text("")
                 
                 .bind("EnterFrame", function () {
                     
                     if (unreadPost){
+                        this.y = 320;
                         this.visible = true;
                         this.text(document.getElementById('PostBox').value);
                         this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
+                        this.delay(function(){npc_post = true;},1500);
                         this.delay(function(){this.visible = false},3000);
                        unreadPost = false;
+                       
                    }
                 })
+                
+            //NPC Post
+            Crafty.e("Post, DOM, 2D,  Text, Delay , bluepost")
+                .attr({ x: 50, y: 320 ,w:600, h: 100,  z:10000, visible:false, speaker:"none"})
+                .text("")
+                
+                .bind("EnterFrame", function () {
+                    pst = document.getElementById('PostBox').value;
+                    if (npc_post){
+                        Crafty("Post").each( function () {this.y -= 150;})
+                        this.y = 320;
+                        this.visible = true;
+                        if (pst.search("Hello") >= 0){
+                            this.text("Welcome Back");
+                        }else if (pst.search("Sheep") >= 0 || (pst.search("Farm") >= 0)){
+                             d += 1; 
+                             speaker = "d";
+                             document.getElementById('dollymeter').value =  d;
+                             this.text(":)");
+                        }else if (pst.search("Cat") >= 0 || (pst.search("Bot") >= 0)){
+                             a += 1;
+                             speaker = "a";
+                             document.getElementById('annameter').value =  a;
+                             this.text("~Meow");
+                        }else{
+                             this.text("hmmm");
+                        }
+                        this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
+                        this.delay(function(){this.visible = false},3000);
+                       npc_post = false;
+                   }
+                })
+                
+            //Pallet item
+            Crafty.c("Pallet_item" ,{
+                init: function(){
+                    this.requires('2D');
+                },
+
+                select:function () {
+                    this.media = m;
+                    Crafty("Brush").each(function () { 
+                        this.media = m; 
+                    })
+
+                    
+                }
+
+
+
+                
+            })  
 
             //pallet items
-            Crafty.e('Media_0, 2D, DOM, brick, Mouse')
-                .attr({ x: 500, y: 820, w: 20, h: 20})       
+            Crafty.e('Media_0, 2D, DOM, brick, Mouse, Pallet_item')
+                .attr({ x: 500, y: 820, w: 20, h: 20, media:0})       
                 .bind("Click", function () {
                      
                     Crafty("Brush").each(function () { 
@@ -264,9 +326,11 @@
                                  
             
                     if (unreadPost){
-                        Crafty("PlayerPost").text(document.getElementById('PostBox').value); 
+                        pst = document.getElementById('PostBox').value;
+                        Crafty("PlayerPost").text("    " + pst); 
                         unreadPost = false;
                                 p += 100;
+                        
                     }
                 })                     
 
@@ -284,6 +348,8 @@
                                 y: this.y
                                 })
                                 .gravity("Solid")
+                                
+                            p -= 10;
                         } else if (this.media == 1){
                             Crafty.e('2D, DOM,  window, SpriteAnimation, Collision, Gravity, Solid')
                                 
@@ -321,6 +387,8 @@
                                        this.turnAround();       
                                 })
                                 .gravity("SuperSolid")
+                            p -= 50;
+                            a += 1;                       
                         } else if(this.media == 3){
                             Crafty.e("2D, DOM, roof1, Gravity, Solid, SuperSolid")
                                 .attr({
@@ -401,6 +469,7 @@
             //})
     
 	</script>
-    <p>Post New Message: <input  id = "PostBox" name="post" value="   Player entered channel!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="poinbox" readonly="readonly" ></p>
+    <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="poinbox" readonly="readonly" ></p>
+    <p>Dolly: <input  id = "dollymeter" readonly="readonly" ></p> Anna: <input  id = "annameter" readonly="readonly" ></p>
 </body>
 </html>
