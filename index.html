@@ -92,19 +92,31 @@
                 
                 .bind("EnterFrame", function () {
                     pst = document.getElementById('PostBox').value.toUpperCase();
+                    if (pst.indexOf("HTTP:") > -1){
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', pst, true);
+                        xhr.onreadystatechange = function() {
+                          if (xhr.readyState === 4)  { 
+                            pst = xhr.responseText;
+                          }
+                        };
+                        xhr.close;
+                    }
                     if (npc_post){
                         Crafty("Post").each( function () {this.y -= 150;})
                         this.y = 320;
                         this.visible = true;
                         if (pst.indexOf("HELLO") >= 0){
                             this.text("Welcome Back");
-                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0)){
+                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("Bot") >= 0)){
                             var i = 0;
                             var j = pst.indexOf("SHEEP", i);
                             while (j > -1){
                                d += 1; 
                                i = j +1
                                j = pst.indexOf("SHEEP", i);
+                               speaker = "d";
+                               this.text(":)");
                             }
                             i = 0;
                             j = pst.indexOf("FARM", i);
@@ -112,6 +124,8 @@
                                 d += 1; 
                                 i = j +1
                                 j = pst.indexOf("FARM", i);
+                                speaker = "d";
+                                this.text(":)");
                             }
                             i = 0;
                             j=pst.indexOf("CLONE", i);
@@ -119,10 +133,9 @@
                                d += 1; 
                                i = j+1
                                j = pst.indexOf("CLONE", i);
+                               speaker = "d";
+                               this.text(":)");
                             }
-                             speaker = "d";
-                             this.text(":)");
-                        }else if (pst.indexOf("CAT") >= 0 || (pst.indexOf("Bot") >= 0)){
                             var i = 0;
                             var j = pst.indexOf("CAT", i);
                             while (j > -1){
@@ -130,6 +143,7 @@
                                i = j +1
                                j = pst.indexOf("CAT", i);
                                this.text("~Meow");
+                               speaker = "a";  
                             }
                             i = 0;
                             j = pst.indexOf("BOT", i);
@@ -138,9 +152,9 @@
                                i = j+1
                                j = pst.indexOf("BOT ", i);
                                this.text("...")
+                               speaker = "a";  
                             }
-                             speaker = "a";                         
-                             
+   
                         }else{
                              this.text("hmmm");
                         }
