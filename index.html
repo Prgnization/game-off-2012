@@ -62,20 +62,7 @@
             Crafty.background( Crafty.e("2D, DOM, Image").image("bg.png"));
             
      
-            //Message 
-            Crafty.e("Message, DOM")
-                //.attr({ x: 200, y: 820, w: 100, h: 20})
-                
-                
-                .bind("EnterFrame", function () {
-                    if (unreadPost){                     
-                        p = p + 100;
-                        document.getElementById('pointbox').value =  p;
-                        
-                        //this.textFont({ family: 'Arial', size:"12px" })
-                        //this.text("Points " +  p)
-                   }
-                })
+
 
 
      
@@ -114,12 +101,10 @@
                         }else if (pst.search("Sheep") >= 0 || (pst.search("Farm") >= 0)){
                              d += 1; 
                              speaker = "d";
-                             document.getElementById('dollymeter').value =  d;
                              this.text(":)");
                         }else if (pst.search("Cat") >= 0 || (pst.search("Bot") >= 0)){
                              a += 1;
-                             speaker = "a";
-                             document.getElementById('annameter').value =  a;
+                             speaker = "a";                         
                              this.text("~Meow");
                         }else{
                              this.text("hmmm");
@@ -339,100 +324,121 @@
 
                     if (e.key == Crafty.keys['ENTER'] || e.key == Crafty.keys['SPACE']){    
                         if (this.media == 0){ 
-                            Crafty.e('2D, DOM, brick, Collision, Gravity, Solid, SuperSolid')
-                                //.color("blue")
-                                .attr({
-                                w: 20,
-                                h: 20,
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
-                                
-                            p -= 10;
-                        } else if (this.media == 1){
-                            Crafty.e('2D, DOM,  window, SpriteAnimation, Collision, Gravity, Solid')
-                                
-                                .attr({
+                            if (p >= 10){
+                                Crafty.e('2D, DOM, brick, Collision, Gravity, Solid, SuperSolid')
+                                    //.color("blue")
+                                    .attr({
                                     w: 20,
                                     h: 20,
                                     x: this.x,
                                     y: this.y
-                                })
-                                .collision()
-                                .animate('window', 0, 1, 1)
-                                .bind("EnterFrame", function () {
-                                    if(!this.isPlaying())
-                                        this.animate('window', 800);
-                                })
-                                .gravity("Solid")
+                                    })
+                                    .gravity("Solid")
+                                p -= 10;
+                            }
+                        } else if (this.media == 1){
+                            if (p >= 10){
+                                Crafty.e('2D, DOM,  window, SpriteAnimation, Collision, Gravity, Solid')
+                                    .attr({
+                                        w: 20,
+                                        h: 20,
+                                        x: this.x,
+                                        y: this.y
+                                    })
+                                    .collision()
+                                    .animate('window', 0, 1, 1)
+                                    .bind("EnterFrame", function () {
+                                        if(!this.isPlaying())
+                                            this.animate('window', 800);
+                                    })
+                                    .gravity("Solid")
+                                p-=10;
+                            }                              
                         } else if(this.media == 2){
-                            Crafty.e("2D, DOM, cat, SpriteAnimation, Gravity, Collision, Mover")
-                                .attr({
-                                x: this.x,
-                                y: this.y,
-                                z: 100000,
-                                dX: 1,
-                                speed:5,
-                                turnFactor:1
-                                })
+                            if (p >= 50){
+                                Crafty.e("2D, DOM, cat, SpriteAnimation, Gravity, Collision, Mover")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y,
+                                    z: 100000,
+                                    dX: 1,
+                                    speed:5,
+                                    turnFactor:1
+                                    })
 
-                                .animate('right', 0, 0, 2)
-                                .animate('left', 0, 1, 2)
-                                
-                                .bind("EnterFrame", function () {
-                                    this.walk();
-                                })
-                                .onHit("SuperSolid", function(){
-                                       this.turnAround();       
-                                })
-                                .gravity("SuperSolid")
-                            p -= 50;
-                            a += 1;                       
+                                    .animate('right', 0, 0, 2)
+                                    .animate('left', 0, 1, 2)
+                                    
+                                    .bind("EnterFrame", function () {
+                                        this.walk();
+                                    })
+                                    .onHit("SuperSolid", function(){
+                                           this.turnAround();       
+                                    })
+                                    .gravity("SuperSolid")
+                                p -= 50;
+                                a += 1; 
+                            }
                         } else if(this.media == 3){
-                            Crafty.e("2D, DOM, roof1, Gravity, Solid, SuperSolid")
-                                .attr({
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
-                             
+                            if (p >= 10){
+                                Crafty.e("2D, DOM, roof1, Gravity, Solid, SuperSolid")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y
+                                    })
+                                    .gravity("Solid")
+                                p -= 10;
+                             }
                         } else if(this.media == 4){
-                            Crafty.e("2D, DOM, roof3, Gravity, Solid, SuperSolid")
-                                .attr({
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
-                                                         
+                            if (p >= 10){
+                                Crafty.e("2D, DOM, roof3, Gravity, Solid, SuperSolid")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y
+                                    })
+                                    .gravity("Solid")
+                                p-=10;
+                            }    
                         } else if(this.media == 5){
-                            Crafty.e("2D, DOM, roof2, Gravity, Solid, SuperSolid")
-                                .attr({
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
+                            if (p >= 10){
+                                Crafty.e("2D, DOM, roof2, Gravity, Solid, SuperSolid")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y
+                                    })
+                                    .gravity("Solid")
+                                p-=10;
+                            }
                         }else if(this.media == 6){
-                            Crafty.e("2D, DOM, door, Gravity, Solid")
-                                .attr({
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
+                            if (p >= 20){
+                                Crafty.e("2D, DOM, door, Gravity, Solid")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y
+                                    })
+                                    .gravity("Solid")
+                                p-=20;
+                            }
                         }else if(this.media == 7){
-                            Crafty.e("2D, DOM, inbrick, Gravity, Solid")
-                                .attr({
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
+                            if (p >= 20){
+                                Crafty.e("2D, DOM, inbrick, Gravity, Solid")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y
+                                    })
+                                    .gravity("Solid")
+                                p-=20;    
+                            }
                         }else if(this.media == 8){
-                            Crafty.e("2D, DOM, indoor, Gravity, Solid")
-                                .attr({
-                                x: this.x,
-                                y: this.y
-                                })
-                                .gravity("Solid")
+                            if (p >= 10){
+                                Crafty.e("2D, DOM, indoor, Gravity, Solid")
+                                    .attr({
+                                    x: this.x,
+                                    y: this.y
+                                    })
+                                    .gravity("Solid")
+                                p-=10;
+                            }
 
                     }        
                     } else if (e.key == Crafty.keys['UP_ARROW'] || e.key == Crafty.keys['W']){
@@ -453,6 +459,17 @@
         function newPost(){
             unreadPost = true;
         }
+        
+         //Message 
+        Crafty.e("Message, DOM")
+            .bind("EnterFrame", function () {
+                if (unreadPost){                     
+                    p = p + 100;
+               }
+               document.getElementById('annameter').value =  a;
+               document.getElementById('pointbox').value =  p;
+               document.getElementById('dollymeter').value =  d;
+            })
         
         //Crafty.addEntityFactory('Wall', function() {
         //      var entity = Crafty.e('2D, DOM, Color, Collision')
