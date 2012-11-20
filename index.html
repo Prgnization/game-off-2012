@@ -13,6 +13,7 @@
         var p =0;
         var d=0;
         var a = 0;
+        var pt = 0;
 
         
         //turn the sprite maps into usable components
@@ -32,7 +33,10 @@
         });
         Crafty.sprite(20, "examplenpc.png", {
             npc: [0, 0,1,2],
-            rev_npc: [0,3,1,2]
+            rev_npc: [0,2,1,2]
+        });
+        Crafty.sprite(20, "examplenpc2.png", {
+            pitys: [0,2,1,2]
         });
         Crafty.sprite(91, "Dolly.png", {
             dolly: [0, 0]  
@@ -108,7 +112,7 @@
                         this.visible = true;
                         if (pst.indexOf("HELLO") >= 0){
                             this.text("Welcome Back");
-                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("Bot") >= 0)){
+                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREES")) >=0|| (pst.indexOf("BRANCH")) >=0){
                             var i = 0;
                             var j = pst.indexOf("SHEEP", i);
                             while (j > -1){
@@ -153,6 +157,24 @@
                                j = pst.indexOf("BOT ", i);
                                this.text("...")
                                speaker = "a";  
+                            } 
+                            var i = 0;
+                            var j = pst.indexOf("BRANCH", i);
+                            while (j > -1){
+                               pt += 1; 
+                               i = j +1
+                               j = pst.indexOf("BRANCH", i);
+                               this.text("ah, interesting");
+                               speaker = "pt";  
+                            }
+                            i = 0;
+                            j = pst.indexOf("TREE", i);
+                            while(j > -1){  
+                               pt += 1; 
+                               i = j+1
+                               j = pst.indexOf("TREE ", i);
+                               this.text("ah, nature")
+                               speaker = "pt";  
                             }
    
                         }else{
@@ -327,7 +349,8 @@
                 .attr({x: 0, y: 780, w: 700, h: 20 })
                 .color("green")
 
-            //NPC            
+            //NPCs
+                //Dolly
             Crafty.e("NPC, 2D, DOM, npc, Collision, Mover")
                 .attr({x: 0, y: 740, z:100, dX:1, speed:2, turnFactor:5})
                 .animate('right', 0, 0, 3)
@@ -340,8 +363,14 @@
                        this.turnAround();       
                 })
                 
+               //Pitys
+            Crafty.e("NPC, 2D, DOM, pitys, Collision, SpriteAnimation")
+                .attr({x: 300, y: 740, z:100, dX:1})
+                .animate('sit', 0, 2, 3)
                 
-         
+                .bind("EnterFrame", function () {
+                    this.animate('sit', 3);
+                })
 
 
             //Brush
@@ -518,6 +547,7 @@
                document.getElementById('annameter').value =  a;
                document.getElementById('pointbox').value =  p;
                document.getElementById('dollymeter').value =  d;
+               document.getElementById('pitysmeter').value =  pt;
             })
         
         //Crafty.addEntityFactory('Wall', function() {
@@ -536,6 +566,6 @@
     
 	</script>
     <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="poinbox" readonly="readonly" ></p>
-    <p>Dolly: <input  id = "dollymeter" readonly="readonly" ></p> Anna: <input  id = "annameter" readonly="readonly" ></p>
+    <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p> Anna: <input  id = "annameter" readonly="readonly" ></p>
 </body>
 </html>
