@@ -91,7 +91,7 @@
                 
             //NPC Post
             Crafty.e("Post, DOM, 2D,  Text, Delay , bluepost")
-                .attr({ x: 50, y: 320 ,w:600, h: 100,  z:10000, visible:false, speaker:"none"})
+                .attr({ x: 50, y: 320 ,w:600, h: 100,  z:10000, visible:false, speaker:"0"})
                 .text("")
                 
                 .bind("EnterFrame", function () {
@@ -119,7 +119,7 @@
                                d += 1; 
                                i = j +1
                                j = pst.indexOf("SHEEP", i);
-                               speaker = "d";
+                               this.speaker = "0";
                                this.text(":)");
                             }
                             i = 0;
@@ -128,7 +128,7 @@
                                 d += 1; 
                                 i = j +1
                                 j = pst.indexOf("FARM", i);
-                                speaker = "d";
+                                this.speaker = "0";
                                 this.text(":)");
                             }
                             i = 0;
@@ -137,7 +137,7 @@
                                d += 1; 
                                i = j+1
                                j = pst.indexOf("CLONE", i);
-                               speaker = "d";
+                               this.speaker = "0";
                                this.text(":)");
                             }
                             var i = 0;
@@ -147,7 +147,7 @@
                                i = j +1
                                j = pst.indexOf("CAT", i);
                                this.text("~Meow");
-                               speaker = "a";  
+                               this.speaker = "1";  
                             }
                             i = 0;
                             j = pst.indexOf("BOT", i);
@@ -156,7 +156,7 @@
                                i = j+1
                                j = pst.indexOf("BOT ", i);
                                this.text("...")
-                               speaker = "a";  
+                               this.speaker = "1";  
                             } 
                             var i = 0;
                             var j = pst.indexOf("BRANCH", i);
@@ -165,7 +165,7 @@
                                i = j +1
                                j = pst.indexOf("BRANCH", i);
                                this.text("ah, interesting");
-                               speaker = "pt";  
+                               this.speaker = "2";  
                             }
                             i = 0;
                             j = pst.indexOf("TREE", i);
@@ -174,12 +174,17 @@
                                i = j+1
                                j = pst.indexOf("TREE ", i);
                                this.text("ah, nature")
-                               speaker = "pt";  
+                               this.speaker = "2";  
                             }
+                            
+                            
+                            
    
                         }else{
                              this.text("hmmm");
                         }
+                        if (this.speaker == 0)
+                                this.addComponent("dolly")
                         this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
                         this.delay(function(){this.visible = false},3000);
                        npc_post = false;
