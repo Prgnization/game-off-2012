@@ -14,6 +14,7 @@
         var d=0;
         var a = 0;
         var pt = 0;
+        var ju = 0;
 
         
         //turn the sprite maps into usable components
@@ -39,7 +40,10 @@
             pitys: [0,2,1,2]
         });
         Crafty.sprite(100, "speak3.png", {
-            dolly: [0, 3,6,1]  
+            dolly_post: [0, 2,6,1],
+            pitys_post: [0, 3,6,1],
+            judy_post: [0, 4,6,1],
+            anna_post: [0, 5,6,1],            
         });         
         Crafty.sprite(100, "speak2.png", {
             greenpost: [0, 1],
@@ -112,14 +116,14 @@
                         this.visible = true;
                         if (pst.indexOf("HELLO") >= 0){
                             this.text("Welcome Back");
-                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREES")) >=0|| (pst.indexOf("BRANCH")) >=0){
+                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREES")) >=0|| (pst.indexOf("BRANCH")) >=0 || (pst.indexOf("FOOD")) >=0 || (pst.indexOf("FORK")) >=0 || (pst.indexOf("RESTAURANT")) >=0){
                             var i = 0;
                             var j = pst.indexOf("SHEEP", i);
                             while (j > -1){
                                d += 1; 
                                i = j +1
                                j = pst.indexOf("SHEEP", i);
-                               this.speaker = "0";
+                               this.speaker = "1";
                                this.text(":)");
                             }
                             i = 0;
@@ -128,7 +132,7 @@
                                 d += 1; 
                                 i = j +1
                                 j = pst.indexOf("FARM", i);
-                                this.speaker = "0";
+                                this.speaker = "1";
                                 this.text(":)");
                             }
                             i = 0;
@@ -137,7 +141,7 @@
                                d += 1; 
                                i = j+1
                                j = pst.indexOf("CLONE", i);
-                               this.speaker = "0";
+                               this.speaker = "1";
                                this.text(":)");
                             }
                             var i = 0;
@@ -147,7 +151,7 @@
                                i = j +1
                                j = pst.indexOf("CAT", i);
                                this.text("~Meow");
-                               this.speaker = "1";  
+                               this.speaker = "0";  
                             }
                             i = 0;
                             j = pst.indexOf("BOT", i);
@@ -156,7 +160,7 @@
                                i = j+1
                                j = pst.indexOf("BOT ", i);
                                this.text("...")
-                               this.speaker = "1";  
+                               this.speaker = "0";  
                             } 
                             var i = 0;
                             var j = pst.indexOf("BRANCH", i);
@@ -175,6 +179,32 @@
                                j = pst.indexOf("TREE ", i);
                                this.text("ah, nature")
                                this.speaker = "2";  
+                            }                            i = 0;
+                            j = pst.indexOf("FOOD", i);
+                            while(j > -1){  
+                               ju += 1; 
+                               i = j+1
+                               j = pst.indexOf("FOOD ", i);
+                               this.text("All this talk of food makes me hungry! maybe i'll make some risoto?")
+                               this.speaker = "3";  
+                            } 
+                            var i = 0;
+                            var j = pst.indexOf("FORK", i);
+                            while (j > -1){
+                               ju += 1; 
+                               i = j +1
+                               j = pst.indexOf("FORK", i);
+                               this.text("Utensils?");
+                               this.speaker = "3";  
+                            }
+                            i = 0;
+                            j = pst.indexOf("RESTAURANT", i);
+                            while(j > -1){  
+                               ju += 1; 
+                               i = j+1
+                               j = pst.indexOf("RESTAURANT ", i);
+                               this.text("I own a restuarant, ya know?")
+                               this.speaker = "2";  
                             }
                             
                             
@@ -184,7 +214,14 @@
                              this.text("hmmm");
                         }
                         if (this.speaker == 0)
-                                this.addComponent("dolly")
+                            this.addComponent("anna_post");
+                        else if(this.speaker == 1)
+                            this.addComponent("dolly_post");
+                        else if(this.speaker == 2)
+                            this.addComponent("pitys_post");
+                        else if(this.speaker == 3)
+                            this.addComponent("judy_post");                            
+                            
                         this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
                         this.delay(function(){this.visible = false},3000);
                        npc_post = false;
@@ -524,13 +561,13 @@
                             }
 
                     }        
-                    } else if (e.key == Crafty.keys['UP_ARROW'] || e.key == Crafty.keys['W']){
+                    } else if (e.key == Crafty.keys['UP_ARROW'] ){
                             this.y = this.y - 20;
-                    }else if (e.key == Crafty.keys['DOWN_ARROW'] || e.key == Crafty.keys['S']){
+                    }else if (e.key == Crafty.keys['DOWN_ARROW'] ){
                             this.y = this.y + 20;
-                    }else if (e.key == Crafty.keys['LEFT_ARROW'] || e.key == Crafty.keys['A']){
+                    }else if (e.key == Crafty.keys['LEFT_ARROW'] ){
                             this.x = this.x - 20;
-                    }else if (e.key == Crafty.keys['RIGHT_ARROW'] || e.key == Crafty.keys['D']){
+                    }else if (e.key == Crafty.keys['RIGHT_ARROW'] ){
                             this.x = this.x + 20;
                     }
                 
@@ -553,6 +590,7 @@
                document.getElementById('pointbox').value =  p;
                document.getElementById('dollymeter').value =  d;
                document.getElementById('pitysmeter').value =  pt;
+               document.getElementById('judymeter').value =  ju;
             })
         
         //Crafty.addEntityFactory('Wall', function() {
@@ -570,7 +608,7 @@
             //})
     
 	</script>
-    <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="poinbox" readonly="readonly" ></p>
-    <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p> Anna: <input  id = "annameter" readonly="readonly" ></p>
+    <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="pointbox" readonly="readonly" ></p>
+    <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p><p>Judy:  <input  id = "judymeter" readonly="readonly" > Anna: <input  id = "annameter" readonly="readonly" ></p>
 </body>
 </html>
