@@ -4,11 +4,20 @@
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}960/reset.css" />
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}960/text.css" />
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}960/960.css" />
+    <style type="text/css">
+        #cr-stage {
+            margin: 0 auto;
+        }
+
+    </style>
 </head>
 <body>
- <div id="Everything_Box" class="container_16">
-    <div id="Main_Game_Frame" class="grid_12 ">
-        <script type="text/javascript">
+ <div id="Everything_Box" class="container_12">
+    <div class="grid_9">
+        this is a test to see if shit works up here
+    </div>
+    <div id="cr-stage">
+<script type="text/javascript">
             var  unreadPost = true;
             var  npc_post = true;
             var width = 940;
@@ -612,11 +621,11 @@
                   //return entity;
                 //})
         
-        </script>
+</script>
     </div>
-    <div id="Meters" class="grid_4">
-    <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="pointbox" readonly="readonly" ></p>
-    <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p><p>Judy:  <input  id = "judymeter" readonly="readonly" > Anna: <input  id = "annameter" readonly="readonly" ></p>
+    <div id="Meters" class="grid_4" style="text-align: center;">
+        <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="pointbox" readonly="readonly" ></p>
+        <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p><p>Judy:  <input  id = "judymeter" readonly="readonly" > Anna: <input  id = "annameter" readonly="readonly" ></p>
     </div>
  </div>
 </body>
