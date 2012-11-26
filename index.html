@@ -25,6 +25,10 @@
             var pt = 0;
             var ju = 0;
 
+            var op1 ="";
+            var op2 ="";
+            var op3 ="";            
+            var choice_up = false;
             
             //turn the sprite maps into usable components
             Crafty.sprite(20, "cat.png", {
@@ -45,6 +49,7 @@
                 npc: [0, 0,1,2],
                 rev_npc: [0,2,1,2]
             });
+            
             Crafty.sprite(20, "examplenpc2.png", {
                 pitys: [0,2,1,2],
                 judy: [0,0,1,2]
@@ -54,7 +59,10 @@
                 pitys_post: [0, 3,6,1],
                 judy_post: [0, 4,6,1],
                 anna_post: [0, 5,6,1],            
-            });         
+            });  
+            Crafty.sprite(100, "choice_bubble.png", {
+                choice_bubble: [0, 0,1,2],
+            });            
             Crafty.sprite(100, "speak2.png", {
                 greenpost: [0, 1],
                 bluepost:[0,0,6,1]
@@ -62,7 +70,7 @@
             
             Crafty.scene("loading", function () {
                 //load takes an array of assets and a callback when complete
-                Crafty.load(["cat.png", "pg2.png", "sprites_1.png", "examplenpc.png", "speak3.png"], function () {
+                Crafty.load(["cat.png", "bg2.png", "sprites_1.png", "examplenpc.png", "speak3.png"], function () {
                     Crafty.scene("main"); //when everything is loaded, run the main scene
                 });
             
@@ -80,13 +88,74 @@
                 Crafty.background( Crafty.e("2D, DOM, Image").image("bg2.png"));
                 
          
-
+            Crafty.e("Option_1, DOM, 2D, Text, Mouse, option, SpriteAnimation, choice_bubble")
+                    .attr({ x: 150, y: 250, w:200, h:100, z:10000, visible:false})
+                    .text(op1)
+                    .bind("EnterFrame", function () {
+                        
+                        if (choice_up){
+                            this.visible = true;
+                            this.text(op1)
+                        }
+                    })
+                                               
+                    .bind("Click", function () {
+                       
+                       if ( Crafty("bluepost").speaker == 3)
+                       ju += 10;
+                       op1 = "";
+                       choice_up = false;
+                       Crafty("option").each( function () {this.visible=false;})
+                    })
+            
+            Crafty.e("Option_2, DOM, 2D, Text, Mouse, option,  SpriteAnimation, choice_bubble")
+                    .attr({ x: 355, y: 250 , w:200, h:100, z:10000, visible:false})
+                    .text(op2)
+                    .bind("EnterFrame", function () {
+                        
+                        if (choice_up){
+                            this.visible = true;
+                            this.text(op2)
+                        }
+                    })
+                                               
+                    .bind("Click", function () {
+                       
+                       if ( Crafty("bluepost").speaker == 3)
+                       ju += 20;
+                       op2 = "";
+                       choice_up = false;
+                       Crafty("option").each( function () {this.visible=false;}) 
+                    })       
+                    
+            Crafty.e("Option_3, DOM, 2D, Text, Mouse,option,  SpriteAnimation, choice_bubble")
+                    .attr({ x: 560, y: 250 ,  w:200, h:100, z:10000, visible:false})
+                    .text(op3)
+                    .bind("EnterFrame", function () {
+                        
+                        if (choice_up){
+                            this.visible = true;
+                            this.text(op3)
+                        }else{
+                            this.visible = false;
+                        }
+                    })
+                                               
+                    .bind("Click", function () {
+                         
+                       if ( Crafty("bluepost").speaker == 3)
+                       ju -= 10;
+                       op3 = "";
+                       choice_up = false;
+                       Crafty("option").each( function () {this.visible=false;})
+                    })         
+         
 
 
          
                 //Player Post
                 Crafty.e("Post, DOM, 2D,  Text, Delay , greenpost")
-                    .attr({ x: 50, y: 320 ,w:600, h: 100, z:10000, visible:false})
+                    .attr({ x: 160, y: 320 ,w:600, h: 100, z:10000, visible:false})
                     .text("")
                     
                     .bind("EnterFrame", function () {
@@ -105,10 +174,11 @@
                     
                 //NPC Post
                 Crafty.e("Post, DOM, 2D,  Text, Delay , bluepost")
-                    .attr({ x: 50, y: 320 ,w:600, h: 100,  z:10000, visible:false, speaker:"0"})
+                    .attr({ x: 160, y: 320 ,w:600, h: 100,  z:10000, visible:false, speaker:"0"})
                     .text("")
                     
                     .bind("EnterFrame", function () {
+   
                         pst = document.getElementById('PostBox').value.toUpperCase();
                         if (pst.indexOf("HTTP:") > -1){
                             var xhr = new XMLHttpRequest();
@@ -195,7 +265,7 @@
                                    ju += 1; 
                                    i = j+1
                                    j = pst.indexOf("FOOD ", i);
-                                   this.text("All this talk of food makes me hungry! maybe i'll make some risoto?")
+                                   this.text("All this talk of food makes me hungry!")
                                    this.speaker = "3";  
                                 } 
                                 var i = 0;
@@ -236,6 +306,31 @@
                             this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
                             this.delay(function(){this.visible = false},3000);
                            npc_post = false;
+                       }
+                       
+                       //story
+                       if( d == 50){
+                            
+                       }else if( d ==100){
+                       
+                       }else if (pt ==50 ){
+                       
+                       }else if (pt == 100){
+                       
+                       }else if (ju ==50 ){
+                             this.text("What's your favorite dish?")
+                             this.speaker = "3";  
+                             op1 = "Soup"
+                             op2 = "Pot Pie"
+                             op3 = "Sushi"
+                             choice_up = true;
+                       }else if (ju == 100){
+                            this.text("I added a new dish to my restuarant's menu!")
+                            this.speaker = "3";  
+                            op1 = "Oh cool"
+                            op2 = "I bet it's delicious. I'd love to visit it sometime."
+                            op3 = "Oh, man. I forgot to grab lunch! bbl"
+                            choice_up = true;
                        }
                     })
                     
