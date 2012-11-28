@@ -90,7 +90,7 @@
                 
          
             Crafty.e("Option_1, DOM, 2D, Text, Mouse, option, SpriteAnimation")
-                    .attr({ x: 150, y: 250, w:200, h:100, z:10000, visible:false})
+                    .attr({ x: 150, y: 150, w:200, h:300, z:10000, visible:false})
                     .text(op1)
                     .bind("EnterFrame", function () {
                         
@@ -99,6 +99,7 @@
                             this.text(op1)
                             this.addComponent("choice_bubble");  
                             this.w = 200;
+                            this.h = 300;
                         }
                     })
                                                
@@ -121,7 +122,7 @@
                     })
             
             Crafty.e("Option_2, DOM, 2D, Text, Mouse, option, SpriteAnimation")
-                    .attr({ x: 355, y: 250 , w:200, h:100, z:10000, visible:false})
+                    .attr({ x: 355, y: 150 , w:200, h:300, z:10000, visible:false})
                     .text(op2)
                     .bind("EnterFrame", function () {
                         
@@ -130,6 +131,7 @@
                             this.text(op2);
                             this.addComponent("choice_bubble");
                             this.w = 200;
+                            this.h = 300;
                         }
                     })
                                                
@@ -150,7 +152,7 @@
                     })       
                     
             Crafty.e("Option_3, DOM, 2D, Text, Mouse,option, SpriteAnimation")
-                    .attr({ x: 560, y: 250 ,  w:200, h:100, z:10000, visible:false})
+                    .attr({ x: 560, y: 150 ,  w:200, h:300, z:10000, visible:false})
                     .text(op3)
                     .bind("EnterFrame", function () {
                         
@@ -159,6 +161,7 @@
                             this.text(op3);
                             this.addComponent("choice_bubble");
                             this.w = 200;
+                            this.h = 300;
                             }
 
                     })
