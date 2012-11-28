@@ -29,6 +29,7 @@
             var op2 ="";
             var op3 ="";            
             var choice_up = false;
+            var question_posed_by = 0;
             
             //turn the sprite maps into usable components
             Crafty.sprite(20, "cat.png", {
@@ -88,7 +89,7 @@
                 Crafty.background( Crafty.e("2D, DOM, Image").image("bg2.png"));
                 
          
-            Crafty.e("Option_1, DOM, 2D, Text, Mouse, option, SpriteAnimation, choice_bubble")
+            Crafty.e("Option_1, DOM, 2D, Text, Mouse, option, SpriteAnimation")
                     .attr({ x: 150, y: 250, w:200, h:100, z:10000, visible:false})
                     .text(op1)
                     .bind("EnterFrame", function () {
@@ -96,55 +97,63 @@
                         if (choice_up){
                             this.visible = true;
                             this.text(op1)
+                            this.addComponent("choice_bubble");  
+                            this.w = 200;
                         }
                     })
                                                
                     .bind("Click", function () {
                        
-                       if ( Crafty("bluepost").speaker == 3)
-                       ju += 10;
+                       if ( question_posed_by == 3){
+                            ju += 10;}
                        op1 = "";
                        choice_up = false;
-                       Crafty("option").each( function () {this.visible=false;})
+                       Crafty("option").each( function () {                     
+                            this.visible=false;
+                       })
                     })
             
-            Crafty.e("Option_2, DOM, 2D, Text, Mouse, option,  SpriteAnimation, choice_bubble")
+            Crafty.e("Option_2, DOM, 2D, Text, Mouse, option, SpriteAnimation")
                     .attr({ x: 355, y: 250 , w:200, h:100, z:10000, visible:false})
                     .text(op2)
                     .bind("EnterFrame", function () {
                         
                         if (choice_up){
                             this.visible = true;
-                            this.text(op2)
+                            this.text(op2);
+                            this.addComponent("choice_bubble");
+                            this.w = 200;
                         }
                     })
                                                
                     .bind("Click", function () {
                        
-                       if ( Crafty("bluepost").speaker == 3)
-                       ju += 20;
+                       if ( question_posed_by == 3){
+                            ju += 20;}
                        op2 = "";
                        choice_up = false;
                        Crafty("option").each( function () {this.visible=false;}) 
                     })       
                     
-            Crafty.e("Option_3, DOM, 2D, Text, Mouse,option,  SpriteAnimation, choice_bubble")
+            Crafty.e("Option_3, DOM, 2D, Text, Mouse,option, SpriteAnimation")
                     .attr({ x: 560, y: 250 ,  w:200, h:100, z:10000, visible:false})
                     .text(op3)
                     .bind("EnterFrame", function () {
                         
                         if (choice_up){
                             this.visible = true;
-                            this.text(op3)
-                        }else{
-                            this.visible = false;
-                        }
+                            this.text(op3);
+                            this.addComponent("choice_bubble");
+                            this.w = 200;
+                            }
+
                     })
                                                
                     .bind("Click", function () {
                          
-                       if ( Crafty("bluepost").speaker == 3)
-                       ju -= 10;
+                       if ( question_posed_by == 3){
+                                ju += 1;
+                                }
                        op3 = "";
                        choice_up = false;
                        Crafty("option").each( function () {this.visible=false;})
@@ -319,14 +328,14 @@
                        
                        }else if (ju ==50 ){
                              this.text("What's your favorite dish?")
-                             this.speaker = "3";  
+                             question_posed_by = "3";  
                              op1 = "Soup"
                              op2 = "Pot Pie"
                              op3 = "Sushi"
                              choice_up = true;
                        }else if (ju == 100){
                             this.text("I added a new dish to my restuarant's menu!")
-                            this.speaker = "3";  
+                            question_posed_by = "3";  
                             op1 = "Oh cool"
                             op2 = "I bet it's delicious. I'd love to visit it sometime."
                             op3 = "Oh, man. I forgot to grab lunch! bbl"
