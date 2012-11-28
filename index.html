@@ -71,7 +71,7 @@
             
             Crafty.scene("loading", function () {
                 //load takes an array of assets and a callback when complete
-                Crafty.load(["cat.png", "bg2.png", "sprites_1.png", "examplenpc.png", "speak3.png"], function () {
+                Crafty.load(["cat.png", "bg3.png", "sprites_1.png", "examplenpc.png", "speak3.png"], function () {
                     Crafty.scene("main"); //when everything is loaded, run the main scene
                 });
             
@@ -86,7 +86,7 @@
             Crafty.scene("loading");
 
             Crafty.scene("main", function () {
-                Crafty.background( Crafty.e("2D, DOM, Image").image("bg2.png"));
+                Crafty.background( Crafty.e("2D, DOM, Image").image("bg3.png"));
                 
          
             Crafty.e("Option_1, DOM, 2D, Text, Mouse, option, SpriteAnimation")
@@ -105,7 +105,12 @@
                     .bind("Click", function () {
                        
                        if ( question_posed_by == 3){
-                            ju += 10;}
+                            ju += 10;
+                       }else if(question_posed_by == 1){
+                            d += 20;
+                       }else if(question_posed_by == 2){
+                            pt += 1
+                       }
                        op1 = "";
                        choice_up = false;
                        Crafty("option").each( function () {                     
@@ -129,7 +134,12 @@
                     .bind("Click", function () {
                        
                        if ( question_posed_by == 3){
-                            ju += 20;}
+                            ju += 20;
+                       }else if(question_posed_by == 1){
+                            d += 1;
+                       }else if(question_posed_by == 2){
+                            pt += 10
+                       }
                        op2 = "";
                        choice_up = false;
                        Crafty("option").each( function () {this.visible=false;}) 
@@ -153,7 +163,11 @@
                          
                        if ( question_posed_by == 3){
                                 ju += 1;
-                                }
+                       }else if(question_posed_by == 1){
+                            d += 10;
+                       }else if(question_posed_by == 2){
+                            pt += 20
+                       }
                        op3 = "";
                        choice_up = false;
                        Crafty("option").each( function () {this.visible=false;})
@@ -319,13 +333,31 @@
                        
                        //story
                        if( d == 50){
-                            
+                             this.text("What do you think I got my handle from?")
+                             question_posed_by = "1";  
+                             op1 = "Um, a sheep?"
+                             op2 = "A baby dool!"
+                             op3 = "Randomizer?"
+                             choice_up = true;
                        }else if( d ==100){
-                       
+                             this.text("How long do you think it takes to get to my farm?")
+                             question_posed_by = "1";  
+                             op1 = "Eight days?"
+                             op2 = "What are you a stalker?"
+                             op3 = "Um, a few hours?"
+                             choice_up = true;                       
                        }else if (pt ==50 ){
-                       
+                             this.text("What's your favorite tree?")
+                             question_posed_by = "2";  
+                             op1 = "What?"
+                             op2 = "Maple"
+                             op3 = "Oak"                       
                        }else if (pt == 100){
-                       
+                             this.text("What kind of pet should I get?")
+                             question_posed_by = "2";  
+                             op1 = "A fish. Easy to car for."
+                             op2 = "Dog, obviously."
+                             op3 = "Maybe a bird?"                       
                        }else if (ju ==50 ){
                              this.text("What's your favorite dish?")
                              question_posed_by = "3";  
@@ -337,7 +369,7 @@
                             this.text("I added a new dish to my restuarant's menu!")
                             question_posed_by = "3";  
                             op1 = "Oh cool"
-                            op2 = "I bet it's delicious. I'd love to visit it sometime."
+                            op2 = "I'd love to try it."
                             op3 = "Oh, man. I forgot to grab lunch! bbl"
                             choice_up = true;
                        }
@@ -365,7 +397,7 @@
 
                 //pallet items
                 Crafty.e('Media_0, 2D, DOM, brick, Mouse, Pallet_item')
-                    .attr({ x: 500, y: 600, w: 20, h: 20, media:0})       
+                    .attr({ x: 60, y: 620, w: 20, h: 20, media:0})       
                     .bind("Click", function () {
                          
                         Crafty("Brush").each(function () { 
@@ -375,7 +407,7 @@
                     
                 Crafty.e('Media_1, 2D, DOM, window, Mouse')
                     
-                    .attr({ x: 525, y: 600, w: 20, h: 20})
+                    .attr({ x: 90, y: 620, w: 20, h: 20})
                            
                     .bind("Click", function () {
                          
@@ -385,7 +417,7 @@
                     })
 
                  Crafty.e("Media_2, 2D, DOM, cat, , Mouse")
-                    .attr({x: 545, y: 600 })
+                    .attr({x: 830, y: 620 })
                            
                     .bind("Click", function () {
                          
@@ -395,7 +427,7 @@
                     })
                 Crafty.e('Media_3, 2D, DOM, roof1, Mouse')
                     
-                    .attr({ x: 565, y: 600})
+                    .attr({ x: 130, y: 620})
                            
                     .bind("Click", function () {
                          
@@ -405,7 +437,7 @@
                     })
 
                  Crafty.e("Media_4, 2D, DOM, roof3, Mouse")
-                    .attr({x: 610, y: 600 })
+                    .attr({x: 180, y: 620 })
                            
                     .bind("Click", function () {
                          
@@ -415,7 +447,7 @@
                     })
 
                  Crafty.e("Media_5, 2D, DOM, roof2,  Mouse")
-                    .attr({x:635, y: 600 })
+                    .attr({x:210, y: 620 })
                            
                     .bind("Click", function () {
                          
@@ -425,7 +457,7 @@
                     })
                     
                  Crafty.e("Media_6, 2D, DOM, door,  Mouse")
-                    .attr({x:680, y: 620 })
+                    .attr({x:475, y: 620 })
                            
                     .bind("Click", function () {
                          
@@ -435,7 +467,7 @@
                     })
 
                     Crafty.e("Media_7, 2D, DOM, inbrick,  Mouse")
-                    .attr({x:500, y: 860 })
+                    .attr({x:30, y: 620 })
                            
                     .bind("Click", function () {
                          
@@ -445,7 +477,7 @@
                     })
                     
                  Crafty.e("Media_8, 2D, DOM, indoor,  Mouse")
-                    .attr({x:680, y: 620 })
+                    .attr({x:430, y: 620 })
                            
                     .bind("Click", function () {
                          
@@ -481,7 +513,7 @@
                                 }else{
                                     this.animate('left', 3);
                                 }
-                                if(this.x > (width-20) || this.x < 0){
+                                if(this.x > (width-20) || this.x < 9){
                                     this.turnAround();
                                 }
                                 else{
@@ -503,13 +535,13 @@
                 
                 //Floor            
                 Crafty.e("Floor, 2D, DOM, Color, Solid, SuperSolid")
-                    .attr({x: 0, y: 570, w: width, h: 20 })
+                    .attr({x: 10, y: 570, w: width-19, h: 20 })
                     .color("green")
 
                 //NPCs
                     //Dolly
                 Crafty.e("NPC, 2D, DOM, npc, Collision, Mover")
-                    .attr({x: 0, y: 530, z:100, dX:1, speed:2, turnFactor:5})
+                    .attr({x: 15, y: 530, z:100, dX:1, speed:2, turnFactor:5})
                     .animate('right', 0, 0, 3)
                     .animate('left', 0, 2, 3)
                     
@@ -522,7 +554,7 @@
                     
                    //Pitys
                 Crafty.e("NPC, 2D, DOM, pitys, Collision, SpriteAnimation")
-                    .attr({x: 300, y: 530, z:100, dX:1})
+                    .attr({x: 400, y: 530, z:100, dX:1})
                     .animate('sit', 0, 2, 3)
                     
                     .bind("EnterFrame", function () {
@@ -531,7 +563,7 @@
 
                    //Judy
                 Crafty.e("NPC, 2D, DOM, judy, Collision, SpriteAnimation")
-                    .attr({x: 450, y: 530, z:100, dX:1})
+                    .attr({x: 700, y: 530, z:100, dX:1})
                     .animate('stand', 0, 0, 3)
                     
                     .bind("EnterFrame", function () {
@@ -541,7 +573,7 @@
                 //Brush
                 Crafty.e("Brush, 2D, DOM, Color, Multiway")
                     .color(color)
-                    .attr({ x: 200, y: 200, w: 20, h: 20, z:100000, media: 0 })
+                    .attr({ x: 200, y: 210, w: 20, h: 20, z:100000, media: 0 })
                     //.multiway(10, { UP_ARROW: -90, DOWN_ARROW: 90, LEFT_ARROW: 180, RIGHT_ARROW: 0 })
                     
                     .bind('EnterFrame', function () {
@@ -578,6 +610,13 @@
                                         })
                                         .gravity("Solid")
                                     p -= 10;
+                                    if(this.x < 313 )
+                                        d +=1;
+                                    else if (this.x < 626){
+                                        pt +=1;
+                                    }else{
+                                        ju +=1;
+                                    }
                                 }
                             } else if (this.media == 1){
                                 if (p >= 10){
@@ -596,6 +635,13 @@
                                         })
                                         .gravity("Solid")
                                     p-=10;
+                                    if(this.x < 313 )
+                                        d +=1;
+                                    else if (this.x < 626){
+                                        pt +=1;
+                                    }else{
+                                        ju +=1;
+                                    }
                                 }                              
                             } else if(this.media == 2){
                                 if (p >= 50){
@@ -620,7 +666,7 @@
                                         })
                                         .gravity("SuperSolid")
                                     p -= 50;
-                                    a += 1; 
+                                    a += 1;                                    
                                 }
                             } else if(this.media == 3){
                                 if (p >= 10){
@@ -631,6 +677,13 @@
                                         })
                                         .gravity("Solid")
                                     p -= 10;
+                                    if(this.x < 313 )
+                                        d +=1;
+                                    else if (this.x < 626){
+                                        pt +=1;
+                                    }else{
+                                        ju +=1;
+                                    }
                                  }
                             } else if(this.media == 4){
                                 if (p >= 10){
@@ -641,6 +694,13 @@
                                         })
                                         .gravity("Solid")
                                     p-=10;
+                                    if(this.x < 313 )
+                                        d +=1;
+                                    else if (this.x < 626){
+                                        pt +=1;
+                                    }else{
+                                        ju +=1;
+                                    }
                                 }    
                             } else if(this.media == 5){
                                 if (p >= 10){
@@ -651,6 +711,13 @@
                                         })
                                         .gravity("Solid")
                                     p-=10;
+                                    if(this.x < 313 )
+                                        d +=1;
+                                    else if (this.x < 626){
+                                        pt +=1;
+                                    }else{
+                                        ju +=1;
+                                    }
                                 }
                             }else if(this.media == 6){
                                 if (p >= 20){
@@ -661,6 +728,13 @@
                                         })
                                         .gravity("Solid")
                                     p-=20;
+                                    if(this.x < 313 )
+                                        d +=2;
+                                    else if (this.x < 626){
+                                        pt +=2;
+                                    }else{
+                                        ju +=2;
+                                    }
                                 }
                             }else if(this.media == 7){
                                 if (p >= 10){
@@ -670,7 +744,14 @@
                                         y: this.y
                                         })
                                         .gravity("Solid")
-                                    p-=10;    
+                                    p-=10;
+                                    if(this.x < 313 )
+                                        d +=1;
+                                    else if (this.x < 626){
+                                        pt +=1;
+                                    }else{
+                                        ju +=1;
+                                    }                                    
                                 }
                             }else if(this.media == 8){
                                 if (p >= 20){
@@ -681,6 +762,13 @@
                                         })
                                         .gravity("Solid")
                                     p-=20;
+                                    if(this.x < 313 )
+                                        d +=2;
+                                    else if (this.x < 626){
+                                        pt +=2;
+                                    }else{
+                                        ju +=2;
+                                    }
                                 }
 
                         }        
