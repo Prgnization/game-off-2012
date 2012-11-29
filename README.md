@@ -1,67 +1,41 @@
 http://prgnization.github.com/game-off-2012
 
+##Avachat
 
-Here at GitHub, we're no strangers to hosting or sponsoring hackathons. With the growing number of games and game development resources on GitHub, we thought it was about time to throw our very own game jam!
+# The Story
 
-## The Challenge
+A few years ago, you and your friends once enjoyed sharing a channel in Avachat the avatar based chat program.
+However, over time more and more of your friends left the channel and eventually, you did too.
 
-You have the entire month of November to create a **web-based** game *loosely* built around one or more of the following themes:
+Today, when you checked your inbox you found an email describing the new features added to Avachat!
+Excited to try them out you return, only to find an empty channel.
 
-* forking (or forks)
-* branching (or branches)
-* cloning (or clones)
-* pushing
-* pulling
+So you find yourself a new channel, with new people to befriend.   
 
-What do we mean by **loosely** based on these concepts? We literally mean, *loosely* based. Some examples might be a FPS where you throw forks at water balloons, an educational game about DNA cloning, or perhaps a platformer where you push and pull objects.
+# The Goal
 
-Your game. Your rules. You can participate as an individual or as a team. You're encouraged to use open source libraries, frameworks, graphics, and sounds.
+The main goal is to befriend one of the four girls: Dolly, Pitys, Judy, or Anna. 
+Each girl has a friendship meter on the page. Your actions in the game can increase 
+your friendship. As you become friends the girls may ask you questions. The better your anwser the
+closer your friendship will become. 
 
-## Prizes
+Friendship can increase by building items and by posting "interesting" things.
+*Items are bought with points, which are gained everytime you post.
+*The girls like it when items are built near their avatar.
+*Each girl has a few words that she find interesting, and posts with those words will increase her friendship.
+*If you are having trouble coming up with interesting words, try words related to the theme.
 
-We have 5 shiny new iPads with Retina displays (64GB wifi models) to give to our winners (or Apple Store Credit equivalent). Runners up will receive GitHub swag of their choice ($100 credit for the [GitHub Shop](http://shop.github.com/)). If you have a team submission, we'll give you Apple Store credit equal to the value of the iPad. You can split it with your teammates as appropriate.
+# How to Play
+*Below the game frame there is a text field where you can type a message. Click "Post" to say this message in game.
+*You will accrue points as you post. 
+*To place an item in the game world, click on the item type you want in the pallet section. This will select an item type. 
+ Once you have selected the item, hit ENTER to place the item.
+*Gravity will move items to the ground, or to the top of an item below it. 
+*The Avatars in the channel will stand in front of items built. 
+*Dolly as well as cats will move around across the area in front of most items.
+*However, the darker bricks cannot be moved trough. Use dark brick to keep cats(or Dolly) where you want them.
 
-All of the winners and runners up will be showcased on our blog.
 
-<img src="http://i.imgur.com/lxZrD.png" style="border:0;">
-
-### Everyone's a winner!
-
-All participants will receive a limited edition [Coderwall](http://www.coderwall.com) badge as shown above. Winners and runners up will also get their own special version of it.
-
-## Judging
-
-We have a number of awesome judges who graciously volunteered to take a look at all the entries!
-
-* [David Czarnecki](http://twitter.com/CzarneckiD), Lead Engineer at Agora Games
-* [Eric Preisz](https://twitter.com/epreisz), CEO of GarageGames
-* [Matt Hackett](https://twitter.com/#!/richtaur), Co-founder of Lost Decade Games
-* [Lee Reilly](http://twitter.com/leereilly), Gamer Dad and Software Developer at GitHub
-* [Romana Ramzan](https://twitter.com/Manak/), Denki's Player Champion. PhD Researcher. Organiser of Scottish Game Jam.
-
-## Rules
-
-* To qualify for entry as an **individual** you must fork the [github/game-off-2012](https://github.com/github/game-off-2012) repository to your individual account
-* To qualify for entry as a **team** you must fork the [github/game-off-2012](https://github.com/github/game-off-2012) to a [free organization account](https://github.com/settings/organizations)
-* All entries must be web-based i.e. playable in a browser. HTML5, WebGL, Unity, Torque 3D, Node JS, Flash is all possible - just be sure the source is made available on your fork.
-* You must be over the age of 13
-
-## Instructions
-
-* If you don't already have a GitHub account, [sign up now](https://github.com/signup/free) - it's free!
-* Fork the [github/game-off-2012](https://github.com/github/game-off-2012) repository to your individual account (or to a free organization account)
-* Be sure to follow @github on Twitter for updates
-* Make sure your code is pushed to the master branch of before Dec 1st!
-* Make sure you have a README file with a brief description, what open source projects (if any) you used, and a screenshot.
-* Your repo should have a brief description and a URL where the game is playable entered into the fields shown below (this will make our judging process easier):
-
+Place where screenshot should go:
 ![](https://img.skitch.com/20121010-x2ecpu95fi91us6hbfehg2dgit.png)
 
-Winners will be announced before Christmas :santa:
-
-# Comments / Questions / Help
-
-* New to Git, GitHub, and/or version control? Check out our [help documentation](https://help.github.com/) to get started!
-* Questions about Git/GitHub? Please email support@github.com and be sure to include 'GitHub Game Off' in the subject.
-* Questions specific to the GitHub Game Off? Please [create an issue](https://github.com/github/game-off-2012/issues/new). That will be the offical FAQ.
-* The official Twitter hashtag is [#ggo12](https://twitter.com/search/realtime?q=%23ggo12).
