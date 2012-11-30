@@ -29,8 +29,8 @@ Friendship can increase by building items and by posting "interesting" things.
 ##  How to Play
 * Below the game frame there is a text field where you can type a message. Click "Post" to say this message in game.
 * You will accrue points as you post. 
-* To place an item in the game world, click on the item type you want in the pallet section. This will select an item type. 
- Once you have selected the item, hit ENTER to place the item.
+* To place an item in the game world, click on the item type you want in the pallet section. This will select an item type. It should appear with a red border around it.
+* Once you have selected the item, hit ENTER to place the item.
 * Gravity will move items to the ground, or to the top of an item below it. 
 * The Avatars in the channel will stand in front of items built. 
 * Dolly as well as cats will move around across the area in front of most items.
