@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <head>	
 	<script type="text/javascript" src="crafty.js"></script>
+    <link rel="stylesheet" type="text/css" href="site.css" />
     <link rel="stylesheet" type="text/css" href="960/reset.css" />
     <link rel="stylesheet" type="text/css" href="960/text.css" />
     <link rel="stylesheet" type="text/css" href="960/960.css" />
 </head>
 <body>
  <div id="Everything_Box" class="container_12">
-    <div class="grid_9">
-        Testing to make sure divs work above the game window. Also, Hi!
+    <div id="logo" class="grid_12">
+       <p>Ava-chat<p>
     </div>
     <div id="main_game_div" class="grid_12" style="text-align: center;">
+    
         <div id="cr-stage">
 <script type="text/javascript">
             var  unreadPost = true;
@@ -326,7 +328,7 @@
                             op2 = "Glad you think so."
                             op3 = "Thanks, bot"
                             choice_up = true;
-                       }else if ( a >=1 && a/50 >=2 && d_level ==1){
+                       }else if ( a >=1 && a/100 >=2 && d_level ==1){
                              this.y = 10;
                              this.visible = true;
                              this.delay(function(){this.visible = false},3000);
@@ -946,7 +948,9 @@
     </div>
     <!-- <div id="Meters" class="grid_8 push_2"> -->
     <div id="Meters" class="grid_12" style="text-align: center;"push_2>
+        </br>
         <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="pointbox" readonly="readonly" ></p>
+        <p>Friendship Meters:</p>
         <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p><p>Judy:  <input  id = "judymeter" readonly="readonly" > Anna: <input  id = "annameter" readonly="readonly" ></p>
     </div>
  </div>
