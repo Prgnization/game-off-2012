@@ -8,8 +8,9 @@
 </head>
 <body>
  <div id="Everything_Box" class="container_12">
-    <div id="logo" class="grid_12">
-       <p>Ava-chat<p>
+    <div " class="grid_12">
+       <p id="logo">Ava-chat<p>
+      
     </div>
     <div id="main_game_div" class="grid_12" style="text-align: center;">
     
@@ -38,11 +39,15 @@
             var pt_level =0;
             var ju_level=0;
             var media = 7;
+            var over =false;
             
             //turn the sprite maps into usable components
             Crafty.sprite(20, "cat.png", {
                 cat: [0, 0],
                 rev_cat:[0,1]
+            });
+            Crafty.sprite(20, "pitys_scan_colored2.png", {
+                pitys_scan: [0, 0],
             });
             Crafty.sprite(20, "sprites_1.png", {
                 inbrick: [0, 0],
@@ -68,6 +73,12 @@
                 pitys_post: [0, 3,6,1],
                 judy_post: [0, 4,6,1],
                 anna_post: [0, 5,6,1],            
+            });  
+            Crafty.sprite(100, "speak_ends.png", {
+                dolly_end: [0, 0,6,3],
+                pitys_end: [0, 3,6,3],
+                judy_end: [0, 6,6,3],
+                anna_end: [0, 9,6,3],            
             });  
             Crafty.sprite(100, "choice_bubble.png", {
                 choice_bubble: [0, 0,1,2],
@@ -160,7 +171,7 @@
                                 pt += 10;
                                 pt_level += 1;
                            }else if(question_posed_by == 0){
-                                a += 100;
+                                a += 30;
                                 a_level += 1;
                            }
                            op2 = "";
@@ -235,7 +246,7 @@
                     .bind("EnterFrame", function () {
    
                         pst = document.getElementById('PostBox').value.toUpperCase();
-                        if (pst.indexOf("HTTP:") > -1){
+                     /*   if (pst.indexOf("HTTP:") > -1){
                             var xhr = new XMLHttpRequest();
                             xhr.open('GET', pst, true);
                             xhr.onreadystatechange = function() {
@@ -244,225 +255,305 @@
                               }
                             };
                             xhr.close;
-                        }
+                        }*/
                         
-                                               
-                       //story
-                       if( d > 1 && d/50 >= 1 && d_level ==0){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                             
-                             this.speaker = "1";
-                             this.text("What do you think I got my handle from?")
-                             question_posed_by = "1";  
-                             op1 = "Um, a sheep?"
-                             op2 = "A baby doll!"
-                             op3 = "Random?"
-                             choice_up = true;
-                       }else if( d/50 >=2 && d_level ==1){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                            
-                             this.speaker = "1";
-                             this.text("How long do you think it takes to get to my farm?")
-                             question_posed_by = "1";  
-                             op1 = "Eight days?"
-                             op2 = "What are you a stalker?"
-                             op3 = "Um, a few hours?"
-                             choice_up = true;                       
-                       }else if ( pt > 1 && pt/50 >= 1 && pt_level ==0){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                             
-                             this.speaker = "2";
-                             this.text("What's your favorite tree?")
-                             question_posed_by = "2";  
-                             op1 = "What?"
-                             op2 = "Maple"
-                             op3 = "Oak"   
-                             choice_up = true;
-                       }else if ( pt/50 >=2 && pt_level ==1){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                             this.speaker = "2";
-                             this.text("What kind of pet should I get?")
-                             question_posed_by = "2";  
-                             op1 = "Fish. Easy to care for."
-                             op2 = "Dog, obviously."
-                             op3 = "Maybe a bird?"  
-                            choice_up = true;                             
-                       }else if ( ju > 1 && ju/50 >= 1 && ju_level ==0){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                             this.speaker = "3";                             
-                             this.text("What's your favorite dish?")
-                             question_posed_by = "3";  
-                             op1 = "Soup"
-                             op2 = "Pot Pie"
-                             op3 = "Sushi"
-                             choice_up = true;
-                       }else if ( ju/50 >=2 && ju_level ==1){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                            this.speaker = "3";
-                            this.text("I added a new dish to my restuarant's menu!")
-                            question_posed_by = "3";  
-                            op1 = "Oh cool"
-                            op2 = "Wish I could try it."
-                            op3 = "Oh, I forgot lunch! bbl"
-                            choice_up = true;
-                       }else if ( a >= 1 && a/100 >= 1 && a_level ==0){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                            this.speaker = "0";
-                            this.text("You have made several interesting posts.")
-                            question_posed_by = "0";  
-                            op1 = "They programed you to find things interesting?"
-                            op2 = "Glad you think so."
-                            op3 = "Thanks, bot"
-                            choice_up = true;
-                       }else if ( a >=1 && a/100 >=2 && d_level ==1){
-                             this.y = 10;
-                             this.visible = true;
-                             this.delay(function(){this.visible = false},3000);
-                            this.speaker = "0";
-                            this.text("You have made several interesting posts.")
-                            question_posed_by = "0";  
-                            op1 = "k"
-                            op2 = "That's cause you are my buddy Anna!"
-                            op3 = "Thanks ... again, bot"
-                            choice_up = true;
-                       }else{
-                       
-                            
-                            if (npc_post){
-                                Crafty("Post").each( function () {this.y -= 150;})
-                                this.y = 320;
-                                this.visible = true;
-                                if (pst.indexOf("HELLO") >= 0){
-                                    this.text("Welcome Back");
-                                    this.speaker=0;
-                                }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREE")) >=0|| (pst.indexOf("BRANCH")) >=0 || (pst.indexOf("FOOD")) >=0 || (pst.indexOf("FORK")) >=0 || (pst.indexOf("RESTAURANT")) >=0){
-                                    var i = 0;
-                                    var j = pst.indexOf("SHEEP", i);
-                                    while (j > -1){
-                                       d += 1; 
-                                       i = j +1
-                                       j = pst.indexOf("SHEEP", i);
-                                       this.speaker = "1";
-                                       this.text(":)");
-                                    }
-                                    i = 0;
-                                    j = pst.indexOf("FARM", i);
-                                    while(j > -1){
-                                        d += 1; 
-                                        i = j +1
-                                        j = pst.indexOf("FARM", i);
-                                        this.speaker = "1";
-                                        this.text(":)");
-                                    }
-                                    i = 0;
-                                    j=pst.indexOf("CLONE", i);
-                                    while(j > -1){  
-                                       d += 1; 
-                                       i = j+1
-                                       j = pst.indexOf("CLONE", i);
-                                       this.speaker = "1";
-                                       this.text(":)");
-                                    }
-                                    var i = 0;
-                                    var j = pst.indexOf("CAT", i);
-                                    while (j > -1){
-                                       a += 1; 
-                                       i = j +1
-                                       j = pst.indexOf("CAT", i);
-                                       this.text("~Meow");
-                                       this.speaker = "0";  
-                                    }
-                                    i = 0;
-                                    j = pst.indexOf("BOT", i);
-                                    while(j > -1){  
-                                       a -= 1; 
-                                       i = j+1
-                                       j = pst.indexOf("BOT ", i);
-                                       this.text("...")
-                                       this.speaker = "0";  
-                                    } 
-                                    var i = 0;
-                                    var j = pst.indexOf("BRANCH", i);
-                                    while (j > -1){
-                                       pt += 1; 
-                                       i = j +1
-                                       j = pst.indexOf("BRANCH", i);
-                                       this.text("ah, interesting");
-                                       this.speaker = "2";  
-                                    }
-                                    i = 0;
-                                    j = pst.indexOf("TREE", i);
-                                    while(j > -1){  
-                                       pt += 1; 
-                                       i = j+1
-                                       j = pst.indexOf("TREE ", i);
-                                       this.text("ah, nature")
-                                       this.speaker = "2";  
-                                    }                            i = 0;
-                                    j = pst.indexOf("FOOD", i);
-                                    while(j > -1){  
-                                       ju += 1; 
-                                       i = j+1
-                                       j = pst.indexOf("FOOD ", i);
-                                       this.text("All this talk of food makes me hungry!")
-                                       this.speaker = "3";  
-                                    } 
-                                    var i = 0;
-                                    var j = pst.indexOf("FORK", i);
-                                    while (j > -1){
-                                       ju += 1; 
-                                       i = j +1
-                                       j = pst.indexOf("FORK", i);
-                                       this.text("Utensils?");
-                                       this.speaker = "3";  
-                                    }
-                                    i = 0;
-                                    j = pst.indexOf("RESTAURANT", i);
-                                    while(j > -1){  
-                                       ju += 1; 
-                                       i = j+1
-                                       j = pst.indexOf("RESTAURANT ", i);
-                                       this.text("I own a restuarant, ya know?")
-                                       this.speaker = "3";  
-                                    }
+                           if (!over){                        
+                               //story
+                               if( d > 1 && d/50 >= 1 && d_level ==0){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                     
+                                     this.speaker = "1";
+                                     this.text("What do you think I got my handle from?")
+                                     question_posed_by = "1";  
+                                     op1 = "Um, a sheep?"
+                                     op2 = "A baby doll!"
+                                     op3 = "Random?"
+                                     choice_up = true;
+                               }else if( d/50 >=2 && d_level ==1){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
                                     
+                                     this.speaker = "1";
+                                     this.text("How long do you think it takes to get to my farm?")
+                                     question_posed_by = "1";  
+                                     op1 = "Eight days?"
+                                     op2 = "What are you a stalker?"
+                                     op3 = "Um, a few hours?"
+                                     choice_up = true;
+                               }else if( d/50 >=3 && d_level ==2){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
                                     
+                                     this.speaker = "1";
+                                     this.text("We're becoming good friends aren't we?")
+                                     question_posed_by = "1";  
+                                     op1 = "I wish I could clone you and keep you here!"
+                                     op2 = "I guess"
+                                     op3 = "Sure are!"
+                                     choice_up = true; 
+                               }else if( d/50 >=4 && d_level ==3){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     //this.delay(function(){this.visible = false},10000);
+                                     this.speaker = "1";
+                                     this.text("");
+                                     this.addComponent("dolly_end");
+                                     over =true;
+                               }else if ( pt > 1 && pt/50 >= 1 && pt_level ==0){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                     
+                                     this.speaker = "2";
+                                     this.text("What's your favorite tree?")
+                                     question_posed_by = "2";  
+                                     op1 = "What?"
+                                     op2 = "Maple"
+                                     op3 = "Oak"   
+                                     choice_up = true;
+                               }else if ( pt/50 >=2 && pt_level ==1){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                     this.speaker = "2";
+                                     this.text("What kind of pet should I get?")
+                                     question_posed_by = "2";  
+                                     op1 = "Fish. Easy to care for."
+                                     op2 = "Dog, obviously."
+                                     op3 = "Maybe a bird?"  
+                                    choice_up = true;   
+                               }else if ( pt/50 >=3 && pt_level ==2){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                     this.speaker = "2";
+                                     this.text("I feel like we really get each other")
+                                     question_posed_by = "2";  
+                                     op1 = "We do?"
+                                     op2 = "yea"
+                                     op3 = "We're like branches on the same tree."  
+                                    choice_up = true; 
+                                }else if ( pt/50 >=4 && pt_level ==3){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.addComponent("pitys_scan"); },50000);
+                                     this.speaker = "2";
+                                     this.text("");
+                                     this.addComponent("pitys_end"); 
+                                     over =true;                             
+                               }else if ( ju > 1 && ju/50 >= 1 && ju_level ==0){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                     this.speaker = "3";                             
+                                     this.text("What's your favorite dish?")
+                                     question_posed_by = "3";  
+                                     op1 = "Soup"
+                                     op2 = "Pot Pie"
+                                     op3 = "Sushi"
+                                     choice_up = true;
+                               }else if ( ju/50 >=2 && ju_level ==1){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                    this.speaker = "3";
+                                    this.text("I added a new dish to my restuarant's menu!")
+                                    question_posed_by = "3";  
+                                    op1 = "Oh cool"
+                                    op2 = "Wish I could try it."
+                                    op3 = "Oh, I forgot lunch! bbl"
+                                    choice_up = true;
+                               }else if ( ju/50 >=3 && ju_level ==2){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                    this.speaker = "3";
+                                    this.text("You should come visit my restuarant sometime.")
+                                    question_posed_by = "3";  
+                                    op1 = "oh, whenever I'm on a trip"
+                                    op2 = "I will! I've been planning to move near there."
+                                    op3 = "Oh, I forgot lunch again!"
+                                    choice_up = true;
+                               }else if ( ju/50 >=4 && ju_level ==3){
+                                     this.y = 10;
+                                     this.visible = true;
+                                    // this.delay(function(){this.visible = false},10000);
+                                    this.speaker = "3";
+                                    this.text("");
+                                    this.addComponent("judy_end");
+                                    over =true;
+                               }else if ( a >= 1 && a/100 >= 1 && a_level ==0){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                    this.speaker = "0";
+                                    this.text("You have made several interesting posts.")
+                                    question_posed_by = "0";  
+                                    op1 = "They programed you to find things interesting?"
+                                    op2 = "Glad you think so."
+                                    op3 = "Thanks, bot"
+                                    choice_up = true;
+                               }else if ( a >=1 && a/100 >=2 && d_level ==1){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                    this.speaker = "0";
+                                    this.text("You have made several interesting posts.")
+                                    question_posed_by = "0";  
+                                    op1 = "k"
+                                    op2 = "That's cause you are my buddy Anna!"
+                                    op3 = "Thanks ... again, bot"
+                                    choice_up = true;
+                               }else if ( a >=1 && a/100 >=3 && d_level ==2){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     this.delay(function(){this.visible = false},3000);
+                                    this.speaker = "0";
+                                    this.text("You have made several interesting posts.")
+                                    question_posed_by = "0";  
+                                    op1 = ">.>"
+                                    op2 = "Anna, even if you aren't real, I still like making you happy."
+                                    op3 = "<.<"
+                                    choice_up = true;
+                               }else if ( a >=1 && a/100 >=4 && d_level ==3){
+                                     this.y = 10;
+                                     this.visible = true;
+                                     //this.delay(function(){this.visible = false},10000);
+                                    this.speaker = "0";
+                                    this.text("");
+                                    this.addComponent("anna_end");
+                                    over =true;
+                               }else{
+                               
                                     
-           
-                                }else{
-                                     this.speaker = Crafty.math.randomInt(1, 3);
-                                     this.text("hmmm");
-                                }
-                                                      
-                                    
-                                this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
-                                this.delay(function(){this.visible = false},3000);
-                               npc_post = false;
-                           }
+                                    if (npc_post){
+                                        Crafty("Post").each( function () {this.y -= 150;})
+                                        this.y = 320;
+                                        this.visible = true;
+                                        if (pst.indexOf("HELLO") >= 0){
+                                            this.text("Hello");
+                                            this.speaker=0;
+                                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREE")) >=0|| (pst.indexOf("BRANCH")) >=0 || (pst.indexOf("FOOD")) >=0 || (pst.indexOf("FORK")) >=0 || (pst.indexOf("RESTAURANT")) >=0){
+                                            var i = 0;
+                                            var j = pst.indexOf("SHEEP", i);
+                                            while (j > -1){
+                                               d += 1; 
+                                               i = j +1
+                                               j = pst.indexOf("SHEEP", i);
+                                               this.speaker = "1";
+                                               this.text(":)");
+                                            }
+                                            i = 0;
+                                            j = pst.indexOf("FARM", i);
+                                            while(j > -1){
+                                                d += 1; 
+                                                i = j +1
+                                                j = pst.indexOf("FARM", i);
+                                                this.speaker = "1";
+                                                this.text(":)");
+                                            }
+                                            i = 0;
+                                            j=pst.indexOf("CLONE", i);
+                                            while(j > -1){  
+                                               d += 1; 
+                                               i = j+1
+                                               j = pst.indexOf("CLONE", i);
+                                               this.speaker = "1";
+                                               this.text(":)");
+                                            }
+                                            var i = 0;
+                                            var j = pst.indexOf("CAT", i);
+                                            while (j > -1){
+                                               a += 1; 
+                                               i = j +1
+                                               j = pst.indexOf("CAT", i);
+                                               this.text("~Meow");
+                                               this.speaker = "0";  
+                                            }
+                                            i = 0;
+                                            j = pst.indexOf("BOT", i);
+                                            while(j > -1){  
+                                               a -= 1; 
+                                               i = j+1
+                                               j = pst.indexOf("BOT ", i);
+                                               this.text("...")
+                                               this.speaker = "0";  
+                                            } 
+                                            var i = 0;
+                                            var j = pst.indexOf("BRANCH", i);
+                                            while (j > -1){
+                                               pt += 1; 
+                                               i = j +1
+                                               j = pst.indexOf("BRANCH", i);
+                                               this.text("ah, interesting");
+                                               this.speaker = "2";  
+                                            }
+                                            i = 0;
+                                            j = pst.indexOf("TREE", i);
+                                            while(j > -1){  
+                                               pt += 1; 
+                                               i = j+1
+                                               j = pst.indexOf("TREE ", i);
+                                               this.text("ah, nature")
+                                               this.speaker = "2";  
+                                            }                            i = 0;
+                                            j = pst.indexOf("FOOD", i);
+                                            while(j > -1){  
+                                               ju += 1; 
+                                               i = j+1
+                                               j = pst.indexOf("FOOD ", i);
+                                               this.text("All this talk of food makes me hungry!")
+                                               this.speaker = "3";  
+                                            } 
+                                            var i = 0;
+                                            var j = pst.indexOf("FORK", i);
+                                            while (j > -1){
+                                               ju += 1; 
+                                               i = j +1
+                                               j = pst.indexOf("FORK", i);
+                                               this.text("Utensils?");
+                                               this.speaker = "3";  
+                                            }
+                                            i = 0;
+                                            j = pst.indexOf("RESTAURANT", i);
+                                            while(j > -1){  
+                                               ju += 1; 
+                                               i = j+1
+                                               j = pst.indexOf("RESTAURANT ", i);
+                                               this.text("I own a restuarant, ya know?")
+                                               this.speaker = "3";  
+                                            }
+                                            
+                                            
+                                            
+                   
+                                        }else{
+                                             this.speaker = Crafty.math.randomInt(1, 3);
+                                             this.text("hmmm");
+                                        }
+                                                              
+                                            
+                                        this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
+                                        this.delay(function(){this.visible = false},3000);
+                                       npc_post = false;
+                                   }
 
-                    } 
-                       if (this.speaker == 0)
-                                this.addComponent("anna_post");
-                        else if(this.speaker == 1)
-                                this.addComponent("dolly_post");
-                        else if(this.speaker == 2)
-                                this.addComponent("pitys_post");
-                        else if(this.speaker == 3)
-                                this.addComponent("judy_post");      
+                            } 
+                                if (!over){
+                                   if (this.speaker == 0)
+                                            this.addComponent("anna_post");
+                                    else if(this.speaker == 1)
+                                            this.addComponent("dolly_post");
+                                    else if(this.speaker == 2)
+                                            this.addComponent("pitys_post");
+                                    else if(this.speaker == 3)
+                                            this.addComponent("judy_post");      
+                                }
+                        }
                     })
                     
                //pallet selection
@@ -948,10 +1039,11 @@
     </div>
     <!-- <div id="Meters" class="grid_8 push_2"> -->
     <div id="Meters" class="grid_12" style="text-align: center;"push_2>
-        </br>
+        <a href="https://github.com/Prgnization/game-off-2012/blob/master/README.md">How to Play</a>
         <p>Post New Message: <input  id = "PostBox" name="post" value="   Hello!"><input type="button" value="Post!" onClick=newPost();> Current Points <input  id = "pointbox" name="pointbox" readonly="readonly" ></p>
-        <p>Friendship Meters:</p>
-        <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p><p>Judy:  <input  id = "judymeter" readonly="readonly" > Anna: <input  id = "annameter" readonly="readonly" ></p>
+        <p>Friendship Meters:</p> 
+        <p>Dolly: <input  id = "dollymeter" readonly="readonly" > Pitys: <input  id = "pitysmeter" readonly="readonly" ></p><p>Judy:  <input  id = "judymeter" readonly="readonly" > Anna: <input  id = "annameter" readonly="readonly" > </p>
+        
     </div>
  </div>
 </body>

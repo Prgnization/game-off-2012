@@ -1,7 +1,7 @@
-http://prgnization.github.com/gameoff2012
 
 ## Avachat
  A Github Game-Off 2012 game.
+Play at: http://prgnization.github.com/game-off-2012
 
 ##  The Story
 
@@ -35,11 +35,12 @@ Friendship can increase by building items and by posting "interesting" things.
 * The Avatars in the channel will stand in front of items built. 
 * Dolly as well as cats will move around across the area in front of most items.
 * However, the darker bricks cannot be moved trough. Use dark brick to keep cats(or Dolly) where you want them.
+* Progress does not save between refreshes. The game is short enough to finish in one sitting!
 
 ## Resources used:
 * Crafty Javascript Game Engine: Crafty.js   http://craftyjs.com/#isometric
 * 960 Grid System  http://960.gs/
-* Art created with Microsoft Paint and Gimp  http://www.gimp.org/. 
+* Art created with Microsoft Paint, Windows Fax and Scan, PaintTool Sai, and Gimp
 
 Place where screenshot should go:
 ![](https://img.skitch.com/20121010x2ecpu95fi91us6hbfehg2dgit.png)
