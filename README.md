@@ -1,6 +1,7 @@
 http://prgnization.github.com/gameoff2012
 
 ## Avachat
+ A Github Game-Off 2012 game.
 
 ##  The Story
 
@@ -36,7 +37,7 @@ Friendship can increase by building items and by posting "interesting" things.
 * However, the darker bricks cannot be moved trough. Use dark brick to keep cats(or Dolly) where you want them.
 
 ## Resources used:
-* Crafty Javascript Game Engine: Crafty.js   http://craftyjs.com/## isometric
+* Crafty Javascript Game Engine: Crafty.js   http://craftyjs.com/#isometric
 * 960 Grid System  http://960.gs/
 * Art created with Microsoft Paint and Gimp  http://www.gimp.org/. 
 
