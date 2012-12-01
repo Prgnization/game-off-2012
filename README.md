@@ -26,7 +26,8 @@ Friendship can increase by building items and by posting "interesting" things.
 * Items are bought with points, which are gained every time you post.
 * The girls like it when items are built near their avatar.
 * Each girl has a few words that she finds interesting, and posts with those words will increase her friendship.
-* If you are having trouble coming up with interesting words, try words related to the theme.
+* Girls will also post randomly, so use these as hints to what they might like.
+* If you are still having trouble coming up with interesting words, try words related to the theme.
 
 ##  How to Play
 * Below the game frame there is a text field where you can type a message. Click "Post" to say this message in game.

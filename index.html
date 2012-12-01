@@ -40,6 +40,7 @@
             var ju_level=0;
             var media = 7;
             var over =false;
+            var random_post = false;
             
             //turn the sprite maps into usable components
             Crafty.sprite(20, "cat.png", {
@@ -585,8 +586,34 @@
                                                               
                                             
                                         this.textFont({ family: 'Arial', size:"40px" , weight: "bold"})
-                                        this.delay(function(){this.visible = false},3000);
-                                       npc_post = false;
+                                        this.delay(function(){ this.visible = false;},3000);
+                                        npc_post = false;
+                                   }else if (!random_post){
+                                            
+                                          if( Crafty.math.randomInt(1, 300) == 300){
+                                            random_post = true;
+                                            this.visible =true;
+                                            this.y = 320;
+                                            this.delay(function(){npc_post = false; this.visible = false; random_post = false;},3000);
+                                            var o = Crafty.math.randomInt(0, 3);
+                                            if (o == 0){
+                                                this.speaker = "0"; 
+                                               this.text("=^.^=")
+                                                
+                                            }else if (o == 1){
+                                                this.speaker = "1";
+                                                this.text("Baaa :P")
+                                                   
+                                            }else if (o==2){
+                                                this.speaker = "2";  
+                                                this.text("I wish my apartment had a yard with a tree.")
+                                                 
+                                            }else if (o==3){
+                                                this.speaker = "3";
+                                                this.text("Oh there's a great show on Food Network right now!")
+                                                   
+                                            }
+                                          }
                                    }
 
                             } 
