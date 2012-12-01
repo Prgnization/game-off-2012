@@ -485,7 +485,7 @@
                                         if (pst.indexOf("HELLO") >= 0){
                                             this.text("Hello");
                                             this.speaker=0;
-                                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 || (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREE")) >=0|| (pst.indexOf("BRANCH")) >=0 || (pst.indexOf("FOOD")) >=0 || (pst.indexOf("FORK")) >=0 || (pst.indexOf("RESTAURANT")) >=0){
+                                        }else if (pst.indexOf("SHEEP") >= 0 || (pst.indexOf("FARM") >= 0) || (pst.indexOf("CLONE") >= 0) || (pst.indexOf("CAT")) >= 0 ||  (pst.indexOf("PUSH") >= 0) ||  (pst.indexOf("PULL") >= 0)|| (pst.indexOf("BOT") >= 0) || (pst.indexOf("TREE")) >=0|| (pst.indexOf("BRANCH")) >=0 || (pst.indexOf("FOOD")) >=0 || (pst.indexOf("FORK")) >=0 || (pst.indexOf("RESTAURANT")) >=0){
                                             var i = 0;
                                             var j = pst.indexOf("SHEEP", i);
                                             while (j > -1){
@@ -516,10 +516,28 @@
                                             var i = 0;
                                             var j = pst.indexOf("CAT", i);
                                             while (j > -1){
-                                               a += 2; 
+                                               a += 1; 
                                                i = j +1
                                                j = pst.indexOf("CAT", i);
                                                this.text("~Meow");
+                                               this.speaker = "0";  
+                                            }
+                                            var i = 0;
+                                            var j = pst.indexOf("PUSH", i);
+                                            while (j > -1){
+                                               a += 1; 
+                                               i = j +1
+                                               j = pst.indexOf("PUSH", i);
+                                               this.text("*pushes back*");
+                                               this.speaker = "0";  
+                                            }
+                                            var i = 0;
+                                            var j = pst.indexOf("PULL", i);
+                                            while (j > -1){
+                                               a += 1; 
+                                               i = j +1
+                                               j = pst.indexOf("PULL", i);
+                                               this.text("*pulls away*");
                                                this.speaker = "0";  
                                             }
                                             i = 0;
@@ -1150,7 +1168,7 @@
                                             })
                                             .gravity("SuperSolid")
                                         p -= 50;
-                                        a += 5;                                    
+                                        a += 1;                                    
                                     }
                                 } else if(media == 3){
                                     if (p >= 10){
