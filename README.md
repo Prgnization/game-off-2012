@@ -8,7 +8,7 @@ Play at: http://prgnization.github.com/game-off-2012
 A few years ago, you and your friends once enjoyed sharing a channel in Avachat, the avatar based chat program.
 However, over time more and more of your friends left the channel and eventually, you did too.
 
-Today, when you checked your inbox you found an email describing the new features added to Avachat!
+Today, when you checked your inbox you found an email describing the new building features added to Ava-chat!
 Excited to try them out, you return only to find an empty channel.
 
 So you find yourself a new channel, with new people to befriend.   
