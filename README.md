@@ -37,7 +37,9 @@ Friendship can increase by building items and by posting "interesting" things.
 * The Avatars in the channel will stand in front of items built. 
 * Dolly as well as cats will move around across the area in front of most items.
 * However, the darker bricks and roof tiles cannot be moved trough. Use these to keep cats(or Dolly) where you want them.
-* Progress does not save between refreshes. The game is short enough to finish in one sitting!
+* Progress does not save between refreshes. The game is short enough to finish in one sitting
+* When a character's friendship meter fills you will recieve that character's ending.
+* Try not to spam when nearing an ending. Spamming buttons may cause the ending images to skip.
 
 ## Resources used:
 * Crafty Javascript Game Engine: Crafty.js   http://craftyjs.com/#isometric

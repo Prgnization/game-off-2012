@@ -327,7 +327,7 @@
                                         this.h = 900;
                                         this.w = 900;
                                         this.z = 100000000;
-                                        this.addComponent("dolly_scan") },5000);
+                                        this.addComponent("dolly_scan") },7000);
                                      this.speaker = "1";
                                      this.text("");
                                      this.addComponent("dolly_end");
@@ -375,7 +375,7 @@
                                         this.h = 900;
                                         this.w = 900;
                                         this.z = 100000000;
-                                        this.addComponent("pitys_scan") },5000);
+                                        this.addComponent("pitys_scan") },7000);
                                      this.speaker = "2";
                                      this.text("");
                                      this.addComponent("pitys_end"); 
@@ -422,7 +422,7 @@
                                         this.h = 900;
                                         this.w = 900;
                                         this.z = 100000000;
-                                        this.addComponent("judy_scan") },5000);
+                                        this.addComponent("judy_scan") },7000);
                                     this.speaker = "3";
                                     this.text("");
                                     this.addComponent("judy_end");
@@ -469,7 +469,7 @@
                                         this.h = 900;
                                         this.w = 900;
                                         this.z = 100000000;
-                                        this.addComponent("anna_scan") },5000);
+                                        this.addComponent("anna_scan") },7000);
                                     this.speaker = "0";
                                     this.text("");
                                     this.addComponent("anna_end");
@@ -515,7 +515,7 @@
                                             var i = 0;
                                             var j = pst.indexOf("CAT", i);
                                             while (j > -1){
-                                               a += 1; 
+                                               a += 2; 
                                                i = j +1
                                                j = pst.indexOf("CAT", i);
                                                this.text("~Meow");
@@ -952,6 +952,27 @@
                     .bind("EnterFrame", function () {
                         this.animate('stand', 3);
                     })
+                 
+                /*End Reset
+                Crafty.e("reseter, 2D, DOM, Text")
+                    .attr({x: 190, y: 600, w:400, h:40,  z:10000000000})
+                    .text("")
+                    .bind("EnterFrame", function () {
+                        if (over){
+                            this.textFont({ family: 'Arial', size:"20px" })
+                            this.text("Continue building");
+                            }
+                    })
+                    .bind("Click", function () {
+                        if (over){
+                              Crafty("Post").each(function ()  {
+                                this.visible = false;
+                            })
+                        }
+    
+                    })*/
+                    
+                    
                     
                 //Meters    
                 Crafty.e("Dolly_Meter_back, 2D, DOM, Color")
@@ -1032,337 +1053,339 @@
 
                     .bind("KeyDown", function (e) {
                         
-
-                        if (e.key == Crafty.keys['ENTER'] ){    
-                            if (media == 0){ 
-                                if (p >= 10){
-                                    Crafty.e('2D, DOM, brick, Collision, Gravity, Solid, SuperSolid')
-                                        //.color("blue")
-                                        .attr({
-                                        w: 20,
-                                        h: 20,
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p -= 10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }
-                            } else if (media == 1){
-                                if (p >= 10){
-                                    Crafty.e('2D, DOM,  window, SpriteAnimation, Collision, Gravity, Solid')
-                                        .attr({
+                        if(!over){
+                            if (e.key == Crafty.keys['ENTER'] ){    
+                                if (media == 0){ 
+                                    if (p >= 10){
+                                        Crafty.e('2D, DOM, brick, Collision, Gravity, Solid, SuperSolid')
+                                            //.color("blue")
+                                            .attr({
                                             w: 20,
                                             h: 20,
                                             x: this.x,
                                             y: this.y
-                                        })
-                                        .collision()
-                                        .animate('window', 0, 1, 1)
-                                        .bind("EnterFrame", function () {
-                                            if(!this.isPlaying())
-                                                this.animate('window', 800);
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
+                                            })
+                                            .gravity("Solid")
+                                        p -= 10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
                                     }
-                                }                              
-                            } else if(media == 2){
-                                if (p >= 50){
-                                    Crafty.e("2D, DOM, cat, SpriteAnimation, Gravity, Collision, Mover")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y,
-                                        z: 100000,
-                                        dX: 1,
-                                        speed:5,
-                                        turnFactor:1
-                                        })
+                                } else if (media == 1){
+                                    if (p >= 10){
+                                        Crafty.e('2D, DOM,  window, SpriteAnimation, Collision, Gravity, Solid')
+                                            .attr({
+                                                w: 20,
+                                                h: 20,
+                                                x: this.x,
+                                                y: this.y
+                                            })
+                                            .collision()
+                                            .animate('window', 0, 1, 1)
+                                            .bind("EnterFrame", function () {
+                                                if(!this.isPlaying())
+                                                    this.animate('window', 800);
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                    }                              
+                                } else if(media == 2){
+                                    if (p >= 50){
+                                        Crafty.e("2D, DOM, cat, SpriteAnimation, Gravity, Collision, Mover")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y,
+                                            z: 100000,
+                                            dX: 1,
+                                            speed:5,
+                                            turnFactor:1
+                                            })
 
-                                        .animate('right', 0, 0, 2)
-                                        .animate('left', 0, 1, 2)
-                                        
-                                        .bind("EnterFrame", function () {
-                                            this.walk();
-                                        })
-                                        .onHit("SuperSolid", function(){
-                                               this.turnAround();       
-                                        })
-                                        .gravity("SuperSolid")
-                                    p -= 50;
-                                    a += 1;                                    
-                                }
-                            } else if(media == 3){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, roof1, Gravity, Solid, SuperSolid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p -= 10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
+                                            .animate('right', 0, 0, 2)
+                                            .animate('left', 0, 1, 2)
+                                            
+                                            .bind("EnterFrame", function () {
+                                                this.walk();
+                                            })
+                                            .onHit("SuperSolid", function(){
+                                                   this.turnAround();       
+                                            })
+                                            .gravity("SuperSolid")
+                                        p -= 50;
+                                        a += 5;                                    
                                     }
-                                 }
-                            } else if(media == 4){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, roof3, Gravity, Solid, SuperSolid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }    
-                            } else if(media == 5){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, roof2, Gravity, Solid, SuperSolid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }
-                            }else if(media == 6){
-                                if (p >= 20){
-                                    Crafty.e("2D, DOM, door, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=20;
-                                    if(this.x < 313 )
-                                        d +=2;
-                                    else if (this.x < 626){
-                                        pt +=2;
-                                    }else{
-                                        ju +=2;
-                                    }
-                                }
-                            }else if(media == 7){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, inbrick, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }                                    
-                                }
-                            }else if(media == 8){
-                                if (p >= 20){
-                                    Crafty.e("2D, DOM, indoor, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=20;
-                                    if(this.x < 313 )
-                                        d +=2;
-                                    else if (this.x < 626){
-                                        pt +=2;
-                                    }else{
-                                        ju +=2;
-                                    }
-                                }
-                            }else if(media == 9){
-                                if (p >= 20){
-                                    Crafty.e("2D, DOM, tree1, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=20;
-                                    if(this.x < 313 )
-                                        d +=2;
-                                    else if (this.x < 626){
-                                        pt +=3;
-                                    }else{
-                                        ju +=2;
-                                    }
-                                }
-                            }else if(media == 10){
-                                if (p >= 20){
-                                    Crafty.e("2D, DOM, tree2, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=20;
-                                    if(this.x < 313 )
-                                        d +=2;
-                                    else if (this.x < 626){
-                                        pt +=3;
-                                    }else{
-                                        ju +=2;
-                                    }
-                                }
-                            }else if(media == 11){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, b_roof1, Gravity, Solid, SuperSolid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }                                    
-                                }
-                            } else if(media == 12){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, b_roof3, Gravity, Solid, SuperSolid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }
-                            } else if(media == 13){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, b_roof2, Gravity, Solid, SuperSolid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }
-                            } else if(media == 14){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, b_fence, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=2;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }
-                            } else if(media == 15){
-                                if (p >= 10){
-                                    Crafty.e("2D, DOM, w_fence, Gravity, Solid")
-                                        .attr({
-                                        x: this.x,
-                                        y: this.y
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=2;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=1;
-                                    }
-                                }
-                            } else if (media == 16){
-                                if (p >= 10){
-                                    Crafty.e('2D, DOM,  flower, SpriteAnimation, Collision, Gravity, Solid')
-                                        .attr({
-                                            w: 20,
-                                            h: 20,
+                                } else if(media == 3){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, roof1, Gravity, Solid, SuperSolid")
+                                            .attr({
                                             x: this.x,
                                             y: this.y
-                                        })
-                                        .collision()
-                                        .animate('wave', 0, 0, 1)
-                                        .bind("EnterFrame", function () {
-                                            if(!this.isPlaying())
-                                                this.animate('wave', 800);
-                                        })
-                                        .gravity("Solid")
-                                    p-=10;
-                                    if(this.x < 313 )
-                                        d +=1;
-                                    else if (this.x < 626){
-                                        pt +=1;
-                                    }else{
-                                        ju +=2;
+                                            })
+                                            .gravity("Solid")
+                                        p -= 10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                     }
+                                } else if(media == 4){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, roof3, Gravity, Solid, SuperSolid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                    }    
+                                } else if(media == 5){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, roof2, Gravity, Solid, SuperSolid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
                                     }
-                                }       
+                                }else if(media == 6){
+                                    if (p >= 20){
+                                        Crafty.e("2D, DOM, door, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=20;
+                                        if(this.x < 313 )
+                                            d +=2;
+                                        else if (this.x < 626){
+                                            pt +=2;
+                                        }else{
+                                            ju +=2;
+                                        }
+                                    }
+                                }else if(media == 7){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, inbrick, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }                                    
+                                    }
+                                }else if(media == 8){
+                                    if (p >= 20){
+                                        Crafty.e("2D, DOM, indoor, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=20;
+                                        if(this.x < 313 )
+                                            d +=2;
+                                        else if (this.x < 626){
+                                            pt +=2;
+                                        }else{
+                                            ju +=2;
+                                        }
+                                    }
+                                }else if(media == 9){
+                                    if (p >= 20){
+                                        Crafty.e("2D, DOM, tree1, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=20;
+                                        if(this.x < 313 )
+                                            d +=2;
+                                        else if (this.x < 626){
+                                            pt +=3;
+                                        }else{
+                                            ju +=2;
+                                        }
+                                    }
+                                }else if(media == 10){
+                                    if (p >= 20){
+                                        Crafty.e("2D, DOM, tree2, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=20;
+                                        if(this.x < 313 )
+                                            d +=2;
+                                        else if (this.x < 626){
+                                            pt +=3;
+                                        }else{
+                                            ju +=2;
+                                        }
+                                    }
+                                }else if(media == 11){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, b_roof1, Gravity, Solid, SuperSolid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }                                    
+                                    }
+                                } else if(media == 12){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, b_roof3, Gravity, Solid, SuperSolid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                    }
+                                } else if(media == 13){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, b_roof2, Gravity, Solid, SuperSolid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                    }
+                                } else if(media == 14){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, b_fence, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=2;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                    }
+                                } else if(media == 15){
+                                    if (p >= 10){
+                                        Crafty.e("2D, DOM, w_fence, Gravity, Solid")
+                                            .attr({
+                                            x: this.x,
+                                            y: this.y
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=2;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=1;
+                                        }
+                                    }
+                                } else if (media == 16){
+                                    if (p >= 10){
+                                        Crafty.e('2D, DOM,  flower, SpriteAnimation, Collision, Gravity, Solid')
+                                            .attr({
+                                                w: 20,
+                                                h: 20,
+                                                x: this.x,
+                                                y: this.y
+                                            })
+                                            .collision()
+                                            .animate('wave', 0, 0, 1)
+                                            .bind("EnterFrame", function () {
+                                                if(!this.isPlaying())
+                                                    this.animate('wave', 800);
+                                            })
+                                            .gravity("Solid")
+                                        p-=10;
+                                        if(this.x < 313 )
+                                            d +=1;
+                                        else if (this.x < 626){
+                                            pt +=1;
+                                        }else{
+                                            ju +=2;
+                                        }
+                                    }       
 
-                        }        
-                        } else if (e.key == Crafty.keys['UP_ARROW'] ){
-                                this.y = this.y - 20;
-                        }else if (e.key == Crafty.keys['DOWN_ARROW'] ){
-                                this.y = this.y + 20;
-                        }else if (e.key == Crafty.keys['LEFT_ARROW'] ){
-                                this.x = this.x - 20;
-                        }else if (e.key == Crafty.keys['RIGHT_ARROW'] ){
-                                this.x = this.x + 20;
-                        }
+                            }        
+                            } else if (e.key == Crafty.keys['UP_ARROW'] ){
+                                    this.y = this.y - 20;
+                            }else if (e.key == Crafty.keys['DOWN_ARROW'] ){
+                                    this.y = this.y + 20;
+                            }else if (e.key == Crafty.keys['LEFT_ARROW'] ){
+                                    this.x = this.x - 20;
+                            }else if (e.key == Crafty.keys['RIGHT_ARROW'] ){
+                                    this.x = this.x + 20;
+                            }
                     
-                 })
+                        }
+                    })
+                 
                         
 
             })
