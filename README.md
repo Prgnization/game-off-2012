@@ -3,6 +3,7 @@
  A Github Game-Off 2012 game.
 
 Play at: http://prgnization.github.com/game-off-2012
+Note: There is a major bug when using Firefox. Please use Chrome or IE.
 
 ##  The Story
 
