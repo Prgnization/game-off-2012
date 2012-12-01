@@ -43,6 +43,6 @@ Friendship can increase by building items and by posting "interesting" things.
 * 960 Grid System  http://960.gs/
 * Art created with Microsoft Paint, Windows Fax and Scan, PaintTool Sai, and Gimp
 
-Place where screenshot should go:
-![](https://img.skitch.com/20121010x2ecpu95fi91us6hbfehg2dgit.png)
+
+![](http://i.imgur.com/fzctF.png?1)
 
