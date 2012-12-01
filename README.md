@@ -47,5 +47,5 @@ Friendship can increase by building items and by posting "interesting" things.
 * Art created with Microsoft Paint, Windows Fax and Scan, PaintTool Sai, and Gimp
 
 
-![](http://i.imgur.com/fzctF.png?1)
+![](http://i.imgur.com/Np2mc.png)
 
